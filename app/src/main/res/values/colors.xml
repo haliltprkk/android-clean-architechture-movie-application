@@ -7,4 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="primary">#0A0B0F</color>
+    <color name="secondary">#EFAE28</color>
+    <color name="judgeGray">#564533</color>
+    <color name="ronchi">#F0C74B</color>
+    <color name="lynch">#64728E</color>
+    <color name="ecstasy">#F7710B</color>
+    <color name="hawaiianTan">#9F5513</color>
+    <color name="fallGreen">#EBE6BF</color>
+
+
 </resources>
