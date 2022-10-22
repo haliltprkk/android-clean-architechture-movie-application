@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="whites">#33FFFFFF</color>
 
     <color name="primary">#0A0B0F</color>
     <color name="secondary">#EFAE28</color>
@@ -16,5 +17,9 @@
     <color name="ecstasy">#F7710B</color>
     <color name="hawaiianTan">#9F5513</color>
     <color name="fallGreen">#EBE6BF</color>
+    <color name="frenchGrey">#BEBEC1</color>
+    <color name="steelGrey">#1C1C27</color>
+    <color name="jumbo">#818186</color>
+    <color name="bombay">#ADADB1</color>
 
 </resources>

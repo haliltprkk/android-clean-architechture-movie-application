@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Movie Application</string>
+    <string name="homePage_welcomeText">Welcome %s 👋</string>
+    <string name="homePage_sloganText">Let\'s relax and watch a movie!</string>
+    <string name="homePage_searchHint">Search</string>
+    <string name="homePage_categoryText">Category</string>
+    <string name="homePage_seeAll">See All</string>
+    <string name="homePage_categoryRomance">Romance</string>
+    <string name="homePage_categoryComedy">Comedy</string>
+    <string name="homePage_categoryHorror">Horror</string>
+    <string name="homePage_categoryDrama">Drama</string>
+    <string name="homePage_showingThisMonthText">Showing this month</string>
 </resources>
