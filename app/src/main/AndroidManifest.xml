@@ -8,6 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".MovieApplication"
         android:theme="@style/Theme.MovieApplication">
         <activity
             android:name=".presentation.movie_detail.MovieDetailActivity"

@@ -1,12 +1,26 @@
 package com.haliltprkk.movieapplication.presentation.movie_detail
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.haliltprkk.movieapplication.R
+import androidx.activity.viewModels
+import com.haliltprkk.movieapplication.databinding.ActivityMovieDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MovieDetailActivity : AppCompatActivity() {
+    lateinit var binding: ActivityMovieDetailBinding
+    private val viewModel: MovieDetailViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movie_detail)
+        binding = ActivityMovieDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+    }
+
+    companion object {
+        fun createSimpleIntent(context: Context): Intent =
+            Intent(context, MovieDetailActivity::class.java)
     }
 }
