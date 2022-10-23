@@ -17,6 +17,7 @@ import com.haliltprkk.movieapplication.common.UiText
 import com.haliltprkk.movieapplication.common.extension.addSimpleVerticalDecoration
 import com.haliltprkk.movieapplication.databinding.ActivityHomeBinding
 import com.haliltprkk.movieapplication.domain.model.MovieItem
+import com.haliltprkk.movieapplication.presentation.movie_detail.MovieDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -73,12 +74,11 @@ class HomeActivity : AppCompatActivity() {
         )
         adapter = MovieAdapter(object : CharacterItemListener {
             override fun onMovieClicked(movieId: String) {
-                Toast.makeText(this@HomeActivity, "movie clicked!", Toast.LENGTH_SHORT).show()
+                startActivity(MovieDetailActivity.createSimpleIntent(this@HomeActivity))
             }
         })
         binding.rvMovies.adapter = adapter
     }
-
 
     companion object {
         fun createSimpleIntent(context: Context): Intent = Intent(context, HomeActivity::class.java)

@@ -2,9 +2,9 @@ package com.haliltprkk.movieapplication.presentation.movie_detail
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.haliltprkk.movieapplication.databinding.ActivityMovieDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,6 +17,13 @@ class MovieDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        listeners()
+    }
+
+    private fun listeners() {
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     companion object {

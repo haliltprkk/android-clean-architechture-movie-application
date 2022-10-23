@@ -4,19 +4,358 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"
+    android:background="@color/steelGrey"
     tools:context=".presentation.movie_detail.MovieDetailActivity">
 
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="-10dp"
+        android:background="@drawable/shape_bg_ripple"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="10dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop" />
+
     <TextView
-        android:id="@+id/textView2"
-        style="@style/TextAppearance.AppCompat.Display1"
+        android:id="@+id/tvPageTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="35dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/texta_bold"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/movieDetailPage_title"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_18"
+        app:layout_constraintBottom_toBottomOf="@+id/ivBack"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintStart_toEndOf="@+id/ivBack"
+        app:layout_constraintTop_toTopOf="@+id/guidelineTop" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
+        app:layout_constraintStart_toEndOf="@id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@id/ivBack">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvGenre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                app:cardBackgroundColor="@color/steelGrey"
+                app:cardCornerRadius="12dp"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toTopOf="@+id/cvDuration"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/cvMovieImage"
+                app:layout_constraintTop_toTopOf="@+id/cvMovieImage"
+                app:layout_constraintVertical_chainStyle="spread_inside"
+                app:strokeColor="@color/tuna"
+                app:strokeWidth="1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_video_camera"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvGenreTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/texta_regular"
+                        android:text="@string/movieDetailPage_genre"
+                        android:textColor="@color/frenchGrey"
+                        android:textSize="@dimen/text_14"
+                        app:layout_constraintEnd_toEndOf="@+id/imageView"
+                        app:layout_constraintStart_toStartOf="@+id/imageView"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+                    <TextView
+                        android:id="@+id/tvGenre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="@font/texta_bold"
+                        android:text="@string/movieDetailPage_comedy"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_14"
+                        app:layout_constraintEnd_toEndOf="@+id/tvGenreTitle"
+                        app:layout_constraintStart_toStartOf="@+id/tvGenreTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/tvGenreTitle" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvDuration"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardBackgroundColor="@color/steelGrey"
+                app:cardCornerRadius="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/cvRating"
+                app:layout_constraintEnd_toEndOf="@id/cvGenre"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/cvGenre"
+                app:layout_constraintTop_toBottomOf="@+id/cvGenre"
+                app:strokeColor="@color/tuna"
+                app:strokeWidth="1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:id="@+id/ivDuration"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_clock"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvDurationTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/texta_regular"
+                        android:text="Duration"
+                        android:textColor="@color/frenchGrey"
+                        android:textSize="@dimen/text_14"
+                        app:layout_constraintEnd_toEndOf="@+id/ivDuration"
+                        app:layout_constraintStart_toStartOf="@+id/ivDuration"
+                        app:layout_constraintTop_toBottomOf="@+id/ivDuration" />
+
+                    <TextView
+                        android:id="@+id/tvDuration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="@font/texta_bold"
+                        android:text="1h 20m"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_14"
+                        app:layout_constraintEnd_toEndOf="@+id/tvDurationTitle"
+                        app:layout_constraintStart_toStartOf="@+id/tvDurationTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDurationTitle" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvRating"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardBackgroundColor="@color/steelGrey"
+                app:cardCornerRadius="12dp"
+                app:layout_constraintBottom_toBottomOf="@id/cvMovieImage"
+                app:layout_constraintEnd_toEndOf="@id/cvDuration"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/cvDuration"
+                app:layout_constraintTop_toBottomOf="@+id/cvDuration"
+                app:strokeColor="@color/tuna"
+                app:strokeWidth="1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:id="@+id/ivRating"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_star"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvRatingTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/texta_regular"
+                        android:text="Rating"
+                        android:textColor="@color/frenchGrey"
+                        android:textSize="@dimen/text_14"
+                        app:layout_constraintEnd_toEndOf="@+id/ivRating"
+                        app:layout_constraintStart_toStartOf="@+id/ivRating"
+                        app:layout_constraintTop_toBottomOf="@+id/ivRating" />
+
+                    <TextView
+                        android:id="@+id/tvRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="@font/texta_bold"
+                        android:text="8.7/10"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_14"
+                        app:layout_constraintEnd_toEndOf="@+id/tvRatingTitle"
+                        app:layout_constraintStart_toStartOf="@+id/tvRatingTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/tvRatingTitle" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvMovieImage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:cardBackgroundColor="@color/bombay"
+                app:cardCornerRadius="30dp"
+                app:layout_constraintBottom_toTopOf="@id/guidelineCenter"
+                app:layout_constraintDimensionRatio="2:3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivMovie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sample_movie" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tvMovieTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/texta_bold"
+                android:maxLines="1"
+                android:text="Minions : Despicable Me 2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guidelineCenter" />
+
+            <View
+                android:id="@+id/separator"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/tuna"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvMovieTitle" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/texta_regular"
+                android:lineSpacingExtra="6dp"
+                android:text="A mysterious aircraft, in the form of a giant magnet, steals a highly potent mutagen known as PX-41 from a secret laboratory in the Arctic Circle. Director Silas Ramsbottom of the Anti-Villain League (AVL) sends one of their agents, Lucy Wilde, to recruit former supervillain Gru. Forcibly brought to the AVL headquarters, Gru is asked by Silas to help them track down the culprit and recover the mutagen. However, Gru refuses, claiming that he is now a legitimate father and business owner. Longing to resume his criminal life, Dr. Nefario, Gru's friend and assistant, leaves him for new employment. This causes a reluctant Gru to investigate the theft and work with Lucy. The pair are stationed at the Paradise Shopping Mall, with a cupcake store as their front."
+                android:textColor="@color/frenchGrey"
+                android:textSize="@dimen/text_14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/separator" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.47" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <View
+        android:id="@+id/topSeparator"
+        android:layout_width="0dp"
+        android:layout_height="16dp"
+        android:background="@drawable/shape_gradient_top_separator"
+        app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
+        app:layout_constraintStart_toEndOf="@id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@id/ivBack" />
+
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_gradient_bottom_separator"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
+        app:layout_constraintStart_toEndOf="@id/guidelineStart" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Movie Detail Activity"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/horizontal_offset" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/horizontal_offset" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/vertical_offset" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

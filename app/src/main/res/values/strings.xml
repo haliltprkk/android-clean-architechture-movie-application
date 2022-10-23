@@ -12,4 +12,7 @@
     <string name="homePage_categoryHorror">Horror</string>
     <string name="homePage_categoryDrama">Drama</string>
     <string name="homePage_showingThisMonthText">Showing this month</string>
+    <string name="movieDetailPage_title">Movie Detail</string>
+    <string name="movieDetailPage_genre">Genre</string>
+    <string name="movieDetailPage_comedy">Comedy</string>
 </resources>

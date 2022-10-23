@@ -12,7 +12,7 @@
     <dimen name="text_30">30sp</dimen>
     <dimen name="text_36">36sp</dimen>
 
-    <dimen name="horizontal_offset">16dp</dimen>
-    <dimen name="vertical_offset">16dp</dimen>
+    <dimen name="horizontal_offset">20dp</dimen>
+    <dimen name="vertical_offset">20dp</dimen>
 
 </resources>
