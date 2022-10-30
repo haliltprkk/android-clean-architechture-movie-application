@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.haliltprkk.movieapplication.common.Resource
 import com.haliltprkk.movieapplication.common.UiText
-import com.haliltprkk.movieapplication.domain.model.MovieItem
-import com.haliltprkk.movieapplication.domain.use_case.home.GetMoviesUseCase
+import com.haliltprkk.movieapplication.domain.model.Movie
+import com.haliltprkk.movieapplication.domain.use_case.home.GetPopularMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -13,22 +13,21 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val
-    getMoviesUseCase: GetMoviesUseCase
+    getMoviesUseCase: GetPopularMoviesUseCase
 ) : ViewModel() {
-
     private val _state = MutableStateFlow<HomeViewState>(HomeViewState.Init)
     fun getViewState(): StateFlow<HomeViewState> = _state.asStateFlow()
 
     init {
-        getMovies()
+        getMovies(PAGE)
     }
 
     private fun setLoading(isLoading: Boolean) {
         _state.value = HomeViewState.IsLoading(isLoading)
     }
 
-    private fun getMovies() {
-        getMoviesUseCase.invoke().onEach { result ->
+    private fun getMovies(page: Int) {
+        getMoviesUseCase.invoke(page).onEach { result ->
             when (result) {
                 is Resource.Error -> {
                     setLoading(false)
@@ -50,8 +49,12 @@ class HomeViewModel @Inject constructor(
     sealed class HomeViewState {
         object Init : HomeViewState()
         data class IsLoading(val isLoading: Boolean) : HomeViewState()
-        data class Success(val data: ArrayList<MovieItem>) : HomeViewState()
+        data class Success(val data: ArrayList<Movie>) : HomeViewState()
         object SuccessWithEmptyData : HomeViewState()
         data class Error(val error: UiText) : HomeViewState()
+    }
+
+    companion object {
+        private const val PAGE = 1
     }
 }

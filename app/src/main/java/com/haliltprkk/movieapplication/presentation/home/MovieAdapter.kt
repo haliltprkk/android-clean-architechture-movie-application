@@ -5,15 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.haliltprkk.movieapplication.common.extension.toFullImageLink
 import com.haliltprkk.movieapplication.databinding.ListItemMovieBinding
-import com.haliltprkk.movieapplication.domain.model.MovieItem
+import com.haliltprkk.movieapplication.domain.model.Movie
 
 
 class MovieAdapter(
     private val listener: CharacterItemListener
 ) : RecyclerView.Adapter<MovieViewHolder>() {
 
-    private val data = ArrayList<MovieItem>()
+    private val data = ArrayList<Movie>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val binding = ListItemMovieBinding.inflate(
@@ -25,7 +27,7 @@ class MovieAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setItems(items: List<MovieItem>) {
+    fun setItems(items: List<Movie>) {
         this.data.clear()
         this.data.addAll(items)
         notifyDataSetChanged()
@@ -41,18 +43,21 @@ class MovieAdapter(
 }
 
 class MovieViewHolder(
-    itemBinding: ListItemMovieBinding,
+    val binding: ListItemMovieBinding,
     private val listener: CharacterItemListener
-) : RecyclerView.ViewHolder(itemBinding.root), View.OnClickListener {
+) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
-    private lateinit var movie: MovieItem
+    private lateinit var movie: Movie
 
     init {
-        itemBinding.root.setOnClickListener(this)
+        binding.root.setOnClickListener(this)
     }
 
-    fun bind(item: MovieItem) {
+    fun bind(item: Movie) {
         this.movie = item
+        binding.tvTitle.text = item.title
+        Glide.with(itemView.context).load(item.posterPath.toFullImageLink()).into(binding.ivMovie)
+        binding.tvOverview.text = item.overview
     }
 
     override fun onClick(v: View?) {
@@ -61,5 +66,5 @@ class MovieViewHolder(
 }
 
 interface CharacterItemListener {
-    fun onMovieClicked(movieId: String)
+    fun onMovieClicked(movieId: Int)
 }

@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.haliltprkk.movieapplication.common.UiText
 import com.haliltprkk.movieapplication.common.extension.addSimpleVerticalDecoration
 import com.haliltprkk.movieapplication.databinding.ActivityHomeBinding
-import com.haliltprkk.movieapplication.domain.model.MovieItem
+import com.haliltprkk.movieapplication.domain.model.Movie
 import com.haliltprkk.movieapplication.presentation.movie_detail.MovieDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -53,7 +53,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleSuccess(list: ArrayList<MovieItem>) {
+    private fun handleSuccess(list: ArrayList<Movie>) {
         adapter.setItems(list)
     }
 
@@ -73,7 +73,7 @@ class HomeActivity : AppCompatActivity() {
             includeLastItem = true
         )
         adapter = MovieAdapter(object : CharacterItemListener {
-            override fun onMovieClicked(movieId: String) {
+            override fun onMovieClicked(movieId: Int) {
                 startActivity(MovieDetailActivity.createSimpleIntent(this@HomeActivity))
             }
         })
