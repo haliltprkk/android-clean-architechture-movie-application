@@ -19,7 +19,7 @@ class GetMoviesUseCase @Inject constructor() {
             emit(Resource.Loading())
             //it just to mimic backend request
             delay(1000)
-            val response = MovieItem.getDummyList()
+            val response = MovieItem.getMockList()
             emit(Resource.Success(data = response))
         } catch (e: HttpException) {
             emit(Resource.Error(e.handleError()))

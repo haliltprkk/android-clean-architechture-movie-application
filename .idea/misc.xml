@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable/shape_glow_gradient.xml" value="0.242" />
         <entry key="app/src/main/res/drawable/shape_gradient_bottom_separator.xml" value="0.3455" />
         <entry key="app/src/main/res/drawable/shape_gradient_separator.xml" value="0.3435" />
+        <entry key="app/src/main/res/drawable/shape_gradient_top_separator.xml" value="0.2205" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.5115496826171875" />
         <entry key="app/src/main/res/layout/activity_movie_detail.xml" value="0.328125" />
         <entry key="app/src/main/res/layout/list_item_movie.xml" value="0.390625" />
