@@ -15,4 +15,9 @@
     <string name="movieDetailPage_title">Movie Detail</string>
     <string name="movieDetailPage_genre">Genre</string>
     <string name="movieDetailPage_comedy">Comedy</string>
+    <string name="movieDetailPage_emptyError">>Couldn\'t find the movie.</string>
+    <string name="movieDetailPage_duration">Duration</string>
+    <string name="movieDetailPage_rating">Rating</string>
+    <string name="hourAndMinWithParam">%dh %dm</string>
+    <string name="ratingWithParam">%.2f/10</string>
 </resources>

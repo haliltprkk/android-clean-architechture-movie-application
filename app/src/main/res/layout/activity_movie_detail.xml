@@ -155,7 +155,7 @@
                         android:layout_marginHorizontal="8dp"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/texta_regular"
-                        android:text="Duration"
+                        android:text="@string/movieDetailPage_duration"
                         android:textColor="@color/frenchGrey"
                         android:textSize="@dimen/text_14"
                         app:layout_constraintEnd_toEndOf="@+id/ivDuration"
@@ -169,12 +169,12 @@
                         android:layout_marginHorizontal="8dp"
                         android:layout_marginTop="3dp"
                         android:fontFamily="@font/texta_bold"
-                        android:text="1h 20m"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_14"
                         app:layout_constraintEnd_toEndOf="@+id/tvDurationTitle"
                         app:layout_constraintStart_toStartOf="@+id/tvDurationTitle"
-                        app:layout_constraintTop_toBottomOf="@+id/tvDurationTitle" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvDurationTitle"
+                        tools:text="1h 20m" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -219,7 +219,7 @@
                         android:layout_marginHorizontal="8dp"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/texta_regular"
-                        android:text="Rating"
+                        android:text="@string/movieDetailPage_rating"
                         android:textColor="@color/frenchGrey"
                         android:textSize="@dimen/text_14"
                         app:layout_constraintEnd_toEndOf="@+id/ivRating"
@@ -233,12 +233,12 @@
                         android:layout_marginHorizontal="8dp"
                         android:layout_marginTop="3dp"
                         android:fontFamily="@font/texta_bold"
-                        android:text="8.7/10"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_14"
                         app:layout_constraintEnd_toEndOf="@+id/tvRatingTitle"
                         app:layout_constraintStart_toStartOf="@+id/tvRatingTitle"
-                        app:layout_constraintTop_toBottomOf="@+id/tvRatingTitle" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvRatingTitle"
+                        tools:text="8.7/10" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -261,7 +261,7 @@
                     android:id="@+id/ivMovie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/sample_movie" />
+                    tools:src="@drawable/sample_movie" />
 
             </androidx.cardview.widget.CardView>
 
@@ -270,15 +270,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:ellipsize="end"
                 android:fontFamily="@font/texta_bold"
-                android:maxLines="1"
-                android:text="Minions : Despicable Me 2"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/guidelineCenter" />
+                app:layout_constraintTop_toBottomOf="@id/guidelineCenter"
+                tools:text="Minions : Despicable Me 2" />
 
             <View
                 android:id="@+id/separator"
@@ -297,12 +295,12 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/texta_regular"
                 android:lineSpacingExtra="6dp"
-                android:text="A mysterious aircraft, in the form of a giant magnet, steals a highly potent mutagen known as PX-41 from a secret laboratory in the Arctic Circle. Director Silas Ramsbottom of the Anti-Villain League (AVL) sends one of their agents, Lucy Wilde, to recruit former supervillain Gru. Forcibly brought to the AVL headquarters, Gru is asked by Silas to help them track down the culprit and recover the mutagen. However, Gru refuses, claiming that he is now a legitimate father and business owner. Longing to resume his criminal life, Dr. Nefario, Gru's friend and assistant, leaves him for new employment. This causes a reluctant Gru to investigate the theft and work with Lucy. The pair are stationed at the Paradise Shopping Mall, with a cupcake store as their front."
                 android:textColor="@color/frenchGrey"
                 android:textSize="@dimen/text_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/separator" />
+                app:layout_constraintTop_toBottomOf="@id/separator"
+                tools:text="A mysterious aircraft, in the form of a giant magnet, steals a highly potent mutagen known as PX-41 from a secret laboratory in the Arctic Circle. Director Silas Ramsbottom of the Anti-Villain League (AVL) sends one of their agents, Lucy Wilde, to recruit former supervillain Gru. Forcibly brought to the AVL headquarters, Gru is asked by Silas to help them track down the culprit and recover the mutagen. However, Gru refuses, claiming that he is now a legitimate father and business owner. Longing to resume his criminal life, Dr. Nefario, Gru's friend and assistant, leaves him for new employment. This causes a reluctant Gru to investigate the theft and work with Lucy. The pair are stationed at the Paradise Shopping Mall, with a cupcake store as their front." />
 
             <Space
                 android:layout_width="0dp"
@@ -310,6 +308,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guidelineCenter"
@@ -331,6 +339,7 @@
 
 
     <View
+        android:id="@+id/view"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:background="@drawable/shape_gradient_bottom_separator"

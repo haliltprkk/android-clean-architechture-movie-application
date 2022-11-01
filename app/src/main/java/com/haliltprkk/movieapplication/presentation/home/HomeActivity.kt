@@ -73,8 +73,13 @@ class HomeActivity : AppCompatActivity() {
             includeLastItem = true
         )
         adapter = MovieAdapter(object : CharacterItemListener {
-            override fun onMovieClicked(movieId: Int) {
-                startActivity(MovieDetailActivity.createSimpleIntent(this@HomeActivity))
+            override fun onMovieClicked(movieId: Long) {
+                startActivity(
+                    MovieDetailActivity.createSimpleIntent(
+                        this@HomeActivity,
+                        movieId = movieId
+                    )
+                )
             }
         })
         binding.rvMovies.adapter = adapter

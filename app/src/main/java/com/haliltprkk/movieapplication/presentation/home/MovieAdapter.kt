@@ -43,7 +43,7 @@ class MovieAdapter(
 }
 
 class MovieViewHolder(
-    val binding: ListItemMovieBinding,
+    private val binding: ListItemMovieBinding,
     private val listener: CharacterItemListener
 ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
@@ -66,5 +66,5 @@ class MovieViewHolder(
 }
 
 interface CharacterItemListener {
-    fun onMovieClicked(movieId: Int)
+    fun onMovieClicked(movieId: Long)
 }

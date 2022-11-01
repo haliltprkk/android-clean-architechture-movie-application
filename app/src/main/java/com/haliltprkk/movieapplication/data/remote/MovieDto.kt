@@ -10,9 +10,9 @@ data class MovieDto(
     @SerializedName("belongs_to_collection")
     val belongsToCollection: Any,
     val budget: Int,
-    val genres: List<GenreDto>,
+    val genres: List<GenreDto>?,
     val homepage: String,
-    val id: Int,
+    val id: Long,
     @SerializedName("imdb_id")
     val imdbId: String,
     @SerializedName("original_language")
@@ -51,6 +51,8 @@ fun MovieDto.toMovie(): Movie {
         voteAverage = voteAverage,
         voteCount = voteCount,
         title = title,
-        overview=overview
+        overview = overview,
+        genre = if (genres != null && genres.isNotEmpty()) genres[0].name else "",
+        runtime = runtime
     )
 }
