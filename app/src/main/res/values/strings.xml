@@ -4,7 +4,7 @@
     <string name="unexpectedError">An unexpected error occurred</string>
     <string name="homePage_welcomeText">Welcome %s 👋</string>
     <string name="homePage_sloganText">Let\'s relax and watch a movie!</string>
-    <string name="homePage_searchHint">Search</string>
+    <string name="homePage_searchText">Search</string>
     <string name="homePage_categoryText">Category</string>
     <string name="homePage_seeAll">See All</string>
     <string name="homePage_categoryRomance">Romance</string>
@@ -20,4 +20,6 @@
     <string name="movieDetailPage_rating">Rating</string>
     <string name="hourAndMinWithParam">%dh %dm</string>
     <string name="ratingWithParam">%.2f/10</string>
+    <string name="searchPage_title">Movie Search</string>
+    <string name="searchPage_searchText">Search</string>
 </resources>

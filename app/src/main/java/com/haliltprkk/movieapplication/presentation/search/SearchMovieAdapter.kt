@@ -1,4 +1,4 @@
-package com.haliltprkk.movieapplication.presentation.home
+package com.haliltprkk.movieapplication.presentation.search
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,18 +7,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.haliltprkk.movieapplication.common.extension.toFullImageLink
-import com.haliltprkk.movieapplication.databinding.ListItemMovieBinding
+import com.haliltprkk.movieapplication.databinding.ListItemSearchMovieBinding
 import com.haliltprkk.movieapplication.domain.model.Movie
 
 
-class MovieAdapter(
+class SearchMovieAdapter(
     private val listener: MovieItemListener
 ) : RecyclerView.Adapter<ViewModel>() {
 
     private val data = ArrayList<Movie>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewModel {
-        val binding = ListItemMovieBinding.inflate(
+        val binding = ListItemSearchMovieBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -43,7 +43,7 @@ class MovieAdapter(
 }
 
 class ViewModel(
-    private val binding: ListItemMovieBinding,
+    private val binding: ListItemSearchMovieBinding,
     private val listener: MovieItemListener
 ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 

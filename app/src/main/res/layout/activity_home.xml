@@ -58,6 +58,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="24dp"
+        android:descendantFocusability="blocksDescendants"
         app:cardBackgroundColor="@color/whites_20"
         app:cardCornerRadius="25dp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
@@ -76,20 +77,17 @@
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/ic_search" />
 
-            <EditText
-                android:id="@+id/etSearch"
+            <TextView
+                android:id="@+id/tvSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
-                android:background="@null"
                 android:fontFamily="@font/texta_bold"
-                android:hint="@string/homePage_searchHint"
+                android:gravity="center_vertical"
                 android:maxLines="1"
-                android:minHeight="48dp"
-                android:scrollHorizontally="true"
-                android:textColor="@color/white"
-                android:textColorHint="@color/jumbo"
+                android:text="@string/homePage_searchText"
+                android:textColor="@color/jumbo"
                 android:textSize="@dimen/text_16" />
         </LinearLayout>
 

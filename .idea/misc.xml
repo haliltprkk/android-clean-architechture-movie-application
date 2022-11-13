@@ -10,7 +10,9 @@
         <entry key="app/src/main/res/drawable/shape_gradient_top_separator.xml" value="0.2205" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_movie_detail.xml" value="0.328125" />
+        <entry key="app/src/main/res/layout/activity_search.xml" value="0.39166666666666666" />
         <entry key="app/src/main/res/layout/list_item_movie.xml" value="0.390625" />
+        <entry key="app/src/main/res/layout/list_item_search_movie.xml" value="0.39166666666666666" />
         <entry key="app/src/main/res/layout/view_empty.xml" value="0.390625" />
       </map>
     </option>

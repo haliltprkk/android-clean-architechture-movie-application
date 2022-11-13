@@ -1,11 +1,9 @@
-package com.haliltprkk.movieapplication.presentation.home
-
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+package com.haliltprkk.movieapplication.presentation.search
 
 import android.content.Context
 import android.content.Intent
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
@@ -15,31 +13,26 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.haliltprkk.movieapplication.common.UiText
 import com.haliltprkk.movieapplication.common.extension.addSimpleVerticalDecoration
-import com.haliltprkk.movieapplication.databinding.ActivityHomeBinding
+import com.haliltprkk.movieapplication.databinding.ActivitySearchBinding
 import com.haliltprkk.movieapplication.domain.model.Movie
 import com.haliltprkk.movieapplication.presentation.movie_detail.MovieDetailActivity
-import com.haliltprkk.movieapplication.presentation.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class HomeActivity : AppCompatActivity() {
-    lateinit var binding: ActivityHomeBinding
-    private val viewModel: HomeViewModel by viewModels()
-    private lateinit var adapter: MovieAdapter
+class SearchActivity : AppCompatActivity() {
+    lateinit var binding: ActivitySearchBinding
+    private val viewModel: SearchViewModel by viewModels()
+    private lateinit var adapter: SearchMovieAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        listeners()
         setUpList()
+        listeners()
         setupObservers()
-    }
-
-    private fun listeners() {
-        binding.cvSearch.setOnClickListener { startActivity(SearchActivity.createSimpleIntent(this)) }
     }
 
     private fun setupObservers() {
@@ -49,26 +42,28 @@ class HomeActivity : AppCompatActivity() {
             .launchIn(lifecycleScope)
     }
 
-    private fun handleStateChange(state: HomeViewModel.HomeViewState) {
+    private fun handleStateChange(state: SearchViewModel.SearchViewState) {
         when (state) {
-            is HomeViewModel.HomeViewState.Init -> Unit
-            is HomeViewModel.HomeViewState.IsLoading -> handleLoading(state.isLoading)
-            is HomeViewModel.HomeViewState.Success -> handleSuccess(state.data)
-            is HomeViewModel.HomeViewState.SuccessWithEmptyData -> Unit
-            is HomeViewModel.HomeViewState.Error -> handleError(state.error)
+            is SearchViewModel.SearchViewState.Error -> handleError(state.error)
+            SearchViewModel.SearchViewState.Init -> Unit
+            is SearchViewModel.SearchViewState.IsLoading -> handleLoading(state.isLoading)
+            is SearchViewModel.SearchViewState.Success -> handleSuccess(state.data)
         }
     }
 
-    private fun handleSuccess(list: ArrayList<Movie>) {
-        adapter.setItems(list)
+    private fun handleSuccess(data: ArrayList<Movie>) {
+        adapter.setItems(data)
     }
 
-    private fun handleLoading(loading: Boolean) {
-        binding.progressBar.isVisible = loading
+    private fun handleLoading(isLoading: Boolean) {
+        binding.progressBar.isVisible = isLoading
     }
 
     private fun handleError(error: UiText) {
-        Toast.makeText(this, error.asString(this), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun listeners() {
+        binding.ivBack.setOnClickListener { finish() }
     }
 
     private fun setUpList() {
@@ -78,11 +73,12 @@ class HomeActivity : AppCompatActivity() {
             includeFirstItem = true,
             includeLastItem = true
         )
-        adapter = MovieAdapter(object : MovieItemListener {
+        adapter = SearchMovieAdapter(object :
+            MovieItemListener {
             override fun onMovieClicked(movieId: Long) {
                 startActivity(
                     MovieDetailActivity.createSimpleIntent(
-                        this@HomeActivity,
+                        this@SearchActivity,
                         movieId = movieId
                     )
                 )
@@ -92,6 +88,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     companion object {
-        fun createSimpleIntent(context: Context): Intent = Intent(context, HomeActivity::class.java)
+        fun createSimpleIntent(context: Context): Intent =
+            Intent(context, SearchActivity::class.java)
     }
 }
