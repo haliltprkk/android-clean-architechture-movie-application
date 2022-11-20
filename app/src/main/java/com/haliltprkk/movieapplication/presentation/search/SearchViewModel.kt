@@ -1,30 +1,54 @@
 package com.haliltprkk.movieapplication.presentation.search
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.haliltprkk.movieapplication.R
+import com.haliltprkk.movieapplication.common.Resource
 import com.haliltprkk.movieapplication.common.UiText
 import com.haliltprkk.movieapplication.domain.model.Movie
+import com.haliltprkk.movieapplication.domain.use_case.search.SearchMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
+import retrofit2.http.Query
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor() : ViewModel() {
-
+class SearchViewModel @Inject constructor(private val searchMovieUseCase: SearchMovieUseCase) :
+    ViewModel() {
     private val _state = MutableStateFlow<SearchViewState>(SearchViewState.Init)
     fun getViewState(): StateFlow<SearchViewState> = _state.asStateFlow()
+    private var searchJob: Job? = null
 
-    init {
-        _state.value = SearchViewState.Success(
-            arrayListOf(
-                Movie.getMockMovie(),
-                Movie.getMockMovie(),
-                Movie.getMockMovie(),
-                Movie.getMockMovie(),
-                Movie.getMockMovie()
-            )
-        )
+    private fun setLoading(isLoading: Boolean) {
+        _state.value = SearchViewState.IsLoading(isLoading)
+    }
+
+    fun searchMovie(query: String) {
+        searchJob?.cancel()
+        searchJob = viewModelScope.launch {
+            delay(500L)
+            searchMovieUseCase.invoke(query).onEach {
+                when (it) {
+                    is Resource.Error -> {
+                        setLoading(false)
+                        _state.value = SearchViewState.Error(it.message)
+                    }
+                    is Resource.Loading -> setLoading(true)
+                    is Resource.Success -> {
+                        setLoading(false)
+                        if (!it.data.isNullOrEmpty()) {
+                            _state.value = SearchViewState.Success(it.data)
+                        } else {
+                            _state.value =
+                                SearchViewState.Error(UiText.StringResource(R.string.searchPage_noMovieText))
+                        }
+                    }
+                }
+            }.launchIn(this)
+        }
     }
 
     sealed class SearchViewState {

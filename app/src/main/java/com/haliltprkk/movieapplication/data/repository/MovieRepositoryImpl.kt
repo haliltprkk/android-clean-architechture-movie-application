@@ -3,6 +3,7 @@ package com.haliltprkk.movieapplication.data.repository
 import com.haliltprkk.movieapplication.data.remote.MovieDto
 import com.haliltprkk.movieapplication.data.remote.MovieService
 import com.haliltprkk.movieapplication.data.remote.PopularMovieListDto
+import com.haliltprkk.movieapplication.data.remote.SearchMovieDto
 import com.haliltprkk.movieapplication.domain.repository.MovieRepository
 import javax.inject.Inject
 
@@ -13,5 +14,9 @@ class MovieRepositoryImpl @Inject constructor(private val api: MovieService) : M
 
     override suspend fun getMovie(id: Long): MovieDto {
         return api.getMovie(id)
+    }
+
+    override suspend fun searchMovie(query: String): SearchMovieDto {
+        return api.searchMovie(query)
     }
 }

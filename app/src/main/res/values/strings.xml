@@ -22,4 +22,5 @@
     <string name="ratingWithParam">%.2f/10</string>
     <string name="searchPage_title">Movie Search</string>
     <string name="searchPage_searchText">Search</string>
+    <string name="searchPage_noMovieText">Couldn\'t find any movie</string>
 </resources>

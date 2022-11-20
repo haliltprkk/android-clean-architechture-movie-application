@@ -22,7 +22,7 @@ data class MovieDto(
     val overview: String,
     val popularity: Double,
     @SerializedName("poster_path")
-    val posterPath: String,
+    val posterPath: String?,
     @SerializedName("production_companies")
     val productionCompanies: List<ProductionCompanyDto>,
     @SerializedName("production_countries")
@@ -46,7 +46,7 @@ data class MovieDto(
 fun MovieDto.toMovie(): Movie {
     return Movie(
         id = id,
-        posterPath = posterPath,
+        posterPath = posterPath ?: "",
         releaseDate = releaseDate,
         voteAverage = voteAverage,
         voteCount = voteCount,

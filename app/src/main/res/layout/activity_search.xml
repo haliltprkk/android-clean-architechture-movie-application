@@ -61,7 +61,7 @@
                 android:src="@drawable/ic_search" />
 
             <EditText
-                android:id="@+id/tvSearch"
+                android:id="@+id/etSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -69,6 +69,8 @@
                 android:background="@null"
                 android:fontFamily="@font/texta_bold"
                 android:hint="@string/searchPage_searchText"
+                android:imeOptions="actionDone"
+                android:inputType="text"
                 android:maxLines="1"
                 android:minHeight="48dp"
                 android:scrollHorizontally="true"
@@ -108,6 +110,17 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="@dimen/vertical_offset" />
 
+    <include
+        android:id="@+id/viewError"
+        layout="@layout/view_error"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/cvSearch"
+        app:layout_constraintVertical_bias="0.25" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
@@ -117,6 +130,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cvSearch" />
+        app:layout_constraintTop_toBottomOf="@+id/cvSearch"
+        app:layout_constraintVertical_bias="0.25" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

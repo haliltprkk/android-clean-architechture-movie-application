@@ -2,10 +2,14 @@ package com.haliltprkk.movieapplication.presentation.search
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -20,6 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+
 @AndroidEntryPoint
 class SearchActivity : AppCompatActivity() {
     lateinit var binding: ActivitySearchBinding
@@ -30,6 +35,7 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.etSearch.requestFocus()
         setUpList()
         listeners()
         setupObservers()
@@ -52,6 +58,7 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun handleSuccess(data: ArrayList<Movie>) {
+        binding.viewError.tvError.visibility = View.GONE
         adapter.setItems(data)
     }
 
@@ -60,10 +67,24 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun handleError(error: UiText) {
+        binding.viewError.tvError.visibility = View.VISIBLE
+        adapter.setItems(arrayListOf())
+        binding.viewError.tvError.text = error.asString(this)
     }
 
     private fun listeners() {
         binding.ivBack.setOnClickListener { finish() }
+        binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                hideSoftKeyboard()
+            }
+            true
+        }
+        binding.etSearch.addTextChangedListener { text ->
+            if (text != null && text.length > 1) {
+                viewModel.searchMovie(text.toString())
+            }
+        }
     }
 
     private fun setUpList() {
@@ -85,6 +106,15 @@ class SearchActivity : AppCompatActivity() {
             }
         })
         binding.rvMovies.adapter = adapter
+    }
+
+    private fun hideSoftKeyboard() {
+        val inputMethodManager: InputMethodManager = getSystemService(
+            INPUT_METHOD_SERVICE
+        ) as InputMethodManager
+        if (inputMethodManager.isAcceptingText) {
+            inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+        }
     }
 
     companion object {

@@ -12,4 +12,7 @@ interface MovieService {
     @GET("movie/{id}")
     suspend fun getMovie(@Path("id") id: Long): MovieDto
 
+    @GET("search/movie")
+    suspend fun searchMovie(@Query("query") query: String): SearchMovieDto
+
 }
