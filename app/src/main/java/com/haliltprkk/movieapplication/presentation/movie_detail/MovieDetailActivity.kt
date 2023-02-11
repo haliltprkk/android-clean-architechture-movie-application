@@ -69,9 +69,8 @@ class MovieDetailActivity : AppCompatActivity() {
 
     private fun init() = viewModel.getMovie(id = MOVIE_ID)
 
-    private fun listeners() {
-        binding.ivBack.setOnClickListener { onBackPressed() }
-    }
+    private fun listeners() =
+        binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
     companion object {
         private var MOVIE_ID: Long = 0

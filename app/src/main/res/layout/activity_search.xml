@@ -76,7 +76,7 @@
                 android:scrollHorizontally="true"
                 android:textColor="@color/white"
                 android:textColorHint="@color/jumbo"
-                android:textSize="@dimen/text_16" />
+                android:textSize="@dimen/text_18" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
