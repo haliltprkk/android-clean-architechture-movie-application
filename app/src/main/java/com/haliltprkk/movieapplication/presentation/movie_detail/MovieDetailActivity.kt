@@ -38,10 +38,8 @@ class MovieDetailActivity : AppCompatActivity() {
     }
 
     private fun setupObservers() {
-        viewModel.getViewState()
-            .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-            .onEach { state -> handleStateChange(state) }
-            .launchIn(lifecycleScope)
+        viewModel.getViewState().flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+            .onEach { state -> handleStateChange(state) }.launchIn(lifecycleScope)
     }
 
     private fun handleStateChange(state: MovieDetailViewModel.MovieDetailViewState) {
@@ -63,21 +61,16 @@ class MovieDetailActivity : AppCompatActivity() {
     }
 
     private fun handleLoading(loading: Boolean) {
-        binding.progressBar.isVisible = loading
+        binding.progress.isVisible = loading
     }
 
-    private fun handleError(error: UiText) {
+    private fun handleError(error: UiText) =
         Toast.makeText(this, error.asString(this), Toast.LENGTH_SHORT).show()
-    }
 
-    private fun init() {
-        viewModel.getMovie(id = MOVIE_ID)
-    }
+    private fun init() = viewModel.getMovie(id = MOVIE_ID)
 
     private fun listeners() {
-        binding.ivBack.setOnClickListener {
-            onBackPressed()
-        }
+        binding.ivBack.setOnClickListener { onBackPressed() }
     }
 
     companion object {

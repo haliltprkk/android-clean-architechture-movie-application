@@ -40,7 +40,7 @@
                 android:maxLines="1"
                 android:text="@string/homePage_searchText"
                 android:textColor="@color/jumbo"
-                android:textSize="@dimen/text_16" />
+                android:textSize="@dimen/text_18" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
