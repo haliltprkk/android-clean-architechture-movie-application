@@ -1,57 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/steelGrey">
-
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/texta_regular"
-        android:text="@string/homePage_welcomeText"
-        android:textColor="@color/frenchGrey"
-        android:textSize="@dimen/text_14"
-        app:layout_constraintEnd_toStartOf="@+id/cardView"
-        app:layout_constraintStart_toStartOf="@+id/tvSlogan"
-        app:layout_constraintTop_toTopOf="@+id/cardView" />
-
-    <TextView
-        android:id="@+id/tvSlogan"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/texta_bold"
-        android:text="@string/homePage_sloganText"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_16"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView"
-        app:layout_constraintEnd_toEndOf="@id/tvWelcome"
-        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        app:cardBackgroundColor="@color/primary"
-        app:cardCornerRadius="12dp"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/ivUser"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            tools:src="@tools:sample/avatars[5]" />
-    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvSearch"
@@ -63,7 +15,7 @@
         app:cardCornerRadius="25dp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@+id/tvSlogan">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -94,200 +46,6 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/tvCategory"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/texta_bold"
-        android:maxLines="1"
-        android:text="@string/homePage_categoryText"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_18"
-        app:layout_constraintBottom_toBottomOf="@+id/tvSeeAll"
-        app:layout_constraintEnd_toStartOf="@+id/tvSeeAll"
-        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-        app:layout_constraintTop_toTopOf="@+id/tvSeeAll" />
-
-    <TextView
-        android:id="@+id/tvSeeAll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:fontFamily="@font/texta_bold"
-        android:text="@string/homePage_seeAll"
-        android:textColor="@color/secondary"
-        android:textSize="@dimen/text_14"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/ic_right_chevron"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
-        app:layout_constraintTop_toBottomOf="@+id/cvSearch" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/groupSeeAll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="tvSeeAll,imageView" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvCategoryRomance"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        app:cardBackgroundColor="@color/whites_20"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/cvCategoryComedy"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/cvCategoryHorro"
-        app:layout_constraintTop_toTopOf="@+id/cvCategoryHorro">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="16dp"
-            android:fontFamily="@font/texta_regular"
-            android:src="@drawable/ic_emoji_in_love" />
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvCategoryComedy"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        app:cardBackgroundColor="@color/whites_20"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/cvCategoryDrama"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/cvCategoryRomance"
-        app:layout_constraintTop_toTopOf="@+id/cvCategoryRomance">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="16dp"
-            android:fontFamily="@font/texta_regular"
-            android:src="@drawable/ic_emoji_happy" />
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvCategoryHorro"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        app:cardBackgroundColor="@color/whites_20"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/cvCategoryRomance"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="@id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@+id/tvCategory">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="16dp"
-            android:fontFamily="@font/texta_regular"
-            android:src="@drawable/ic_emoji_shocked" />
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvCategoryDrama"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        app:cardBackgroundColor="@color/whites_20"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/cvCategoryComedy"
-        app:layout_constraintTop_toTopOf="@+id/cvCategoryComedy">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="16dp"
-            android:fontFamily="@font/texta_regular"
-            android:src="@drawable/ic_emoji_crying" />
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/tvCategoryRomance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="4dp"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/texta_medium"
-        android:gravity="center"
-        android:text="@string/homePage_categoryRomance"
-        android:textColor="@color/bombay"
-        android:textSize="@dimen/text_14"
-        app:layout_constraintEnd_toEndOf="@+id/cvCategoryRomance"
-        app:layout_constraintStart_toStartOf="@+id/cvCategoryRomance"
-        app:layout_constraintTop_toBottomOf="@+id/cvCategoryRomance" />
-
-    <TextView
-        android:id="@+id/tvCategoryComedy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="4dp"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/texta_medium"
-        android:gravity="center"
-        android:text="@string/homePage_categoryComedy"
-        android:textColor="@color/bombay"
-        android:textSize="@dimen/text_14"
-        app:layout_constraintEnd_toEndOf="@+id/cvCategoryComedy"
-        app:layout_constraintStart_toStartOf="@+id/cvCategoryComedy"
-        app:layout_constraintTop_toBottomOf="@+id/cvCategoryComedy" />
-
-    <TextView
-        android:id="@+id/tvCategoryHorror"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="4dp"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/texta_medium"
-        android:gravity="center"
-        android:text="@string/homePage_categoryHorror"
-        android:textColor="@color/bombay"
-        android:textSize="@dimen/text_14"
-        app:layout_constraintEnd_toEndOf="@+id/cvCategoryHorro"
-        app:layout_constraintStart_toStartOf="@+id/cvCategoryHorro"
-        app:layout_constraintTop_toBottomOf="@+id/cvCategoryHorro" />
-
-    <TextView
-        android:id="@+id/tvCategoryDrama"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="4dp"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/texta_medium"
-        android:gravity="center"
-        android:text="@string/homePage_categoryDrama"
-        android:textColor="@color/bombay"
-        android:textSize="@dimen/text_14"
-        app:layout_constraintEnd_toEndOf="@+id/cvCategoryDrama"
-        app:layout_constraintStart_toStartOf="@+id/cvCategoryDrama"
-        app:layout_constraintTop_toBottomOf="@+id/cvCategoryDrama" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrierCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="tvCategoryComedy,tvCategoryHorror,tvCategoryDrama,tvCategoryRomance"
-        tools:layout_editor_absoluteY="731dp" />
-
-    <TextView
         android:id="@+id/tvShowingThisMonthCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -301,7 +59,7 @@
         android:textSize="@dimen/text_18"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@id/barrierCategory" />
+        app:layout_constraintTop_toBottomOf="@+id/cvSearch" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMovies"

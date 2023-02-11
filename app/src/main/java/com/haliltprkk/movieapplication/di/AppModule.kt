@@ -24,19 +24,15 @@ object AppModule {
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): MovieService {
-        return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
-            .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        return Retrofit.Builder().baseUrl(BuildConfig.BASE_URL).client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create()).build()
             .create(MovieService::class.java)
     }
 
     @Provides
     @Singleton
     fun provideOkHttpClient(httpLoggingInterceptor: LoggingInterceptor): OkHttpClient {
-        val client = OkHttpClient.Builder()
-            .addInterceptor(httpLoggingInterceptor)
+        val client = OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor)
             .addInterceptor(Interceptor { chain ->
                 val original = chain.request()
                 val url =
@@ -44,8 +40,7 @@ object AppModule {
                         .build()
                 val requestBuilder = original.newBuilder().url(url)
                 chain.proceed(requestBuilder.build())
-            })
-            .build()
+            }).build()
         return client
     }
 
