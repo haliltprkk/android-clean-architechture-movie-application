@@ -7,11 +7,11 @@ import com.haliltprkk.movieapplication.common.extension.handleError
 import com.haliltprkk.movieapplication.data.remote.toMovie
 import com.haliltprkk.movieapplication.domain.model.Movie
 import com.haliltprkk.movieapplication.domain.repository.MovieRepository
+import java.io.IOException
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
-import java.io.IOException
-import javax.inject.Inject
 
 class SearchMovieUseCase @Inject constructor(private val repository: MovieRepository) {
 

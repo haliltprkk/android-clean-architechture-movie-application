@@ -24,7 +24,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-
 @AndroidEntryPoint
 class SearchActivity : AppCompatActivity() {
     lateinit var binding: ActivitySearchBinding
@@ -95,16 +94,16 @@ class SearchActivity : AppCompatActivity() {
             includeLastItem = true
         )
         adapter = SearchMovieAdapter(object :
-            MovieItemListener {
-            override fun onMovieClicked(movieId: Long) {
-                startActivity(
-                    MovieDetailActivity.createSimpleIntent(
-                        this@SearchActivity,
-                        movieId = movieId
+                MovieItemListener {
+                override fun onMovieClicked(movieId: Long) {
+                    startActivity(
+                        MovieDetailActivity.createSimpleIntent(
+                            this@SearchActivity,
+                            movieId = movieId
+                        )
                     )
-                )
-            }
-        })
+                }
+            })
         binding.rvMovies.adapter = adapter
     }
 

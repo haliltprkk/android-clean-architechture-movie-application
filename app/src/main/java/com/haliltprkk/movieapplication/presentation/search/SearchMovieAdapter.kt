@@ -10,7 +10,6 @@ import com.haliltprkk.movieapplication.common.extension.toFullImageLink
 import com.haliltprkk.movieapplication.databinding.ListItemSearchMovieBinding
 import com.haliltprkk.movieapplication.domain.model.Movie
 
-
 class SearchMovieAdapter(
     private val listener: MovieItemListener
 ) : RecyclerView.Adapter<ViewModel>() {

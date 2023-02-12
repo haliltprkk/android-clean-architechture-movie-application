@@ -7,18 +7,19 @@ import com.haliltprkk.movieapplication.common.extension.handleError
 import com.haliltprkk.movieapplication.data.remote.toMovie
 import com.haliltprkk.movieapplication.domain.model.Movie
 import com.haliltprkk.movieapplication.domain.repository.MovieRepository
+import java.io.IOException
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
-import java.io.IOException
-import javax.inject.Inject
 
 class GetPopularMoviesUseCase @Inject constructor(private val repository: MovieRepository) {
 
     operator fun invoke(page: Int): Flow<Resource<ArrayList<Movie>>> = flow {
         try {
             emit(Resource.Loading())
-            val response = ArrayList(repository.getPopularMovies(page = page).results.map { it.toMovie() })
+            val response =
+                ArrayList(repository.getPopularMovies(page = page).results.map { it.toMovie() })
             emit(Resource.Success(data = response))
         } catch (e: HttpException) {
             emit(Resource.Error(e.handleError()))

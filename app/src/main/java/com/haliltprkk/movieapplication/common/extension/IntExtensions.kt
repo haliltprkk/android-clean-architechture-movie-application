@@ -10,5 +10,5 @@ val Int.toPx: Int get() = (this * getSystem().displayMetrics.density).toInt()
 fun Int.runTimeToReadableDuration(context: Context): String {
     val hours: Int = this / 60
     val minutes: Int = this % 60
-    return context.getString(R.string.hourAndMinWithParam,hours,minutes)
+    return context.getString(R.string.hourAndMinWithParam, hours, minutes)
 }

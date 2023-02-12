@@ -7,8 +7,8 @@ import com.haliltprkk.movieapplication.common.UiText
 import com.haliltprkk.movieapplication.domain.model.Movie
 import com.haliltprkk.movieapplication.domain.use_case.home.GetPopularMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
 import javax.inject.Inject
+import kotlinx.coroutines.flow.*
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(

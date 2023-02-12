@@ -1,12 +1,11 @@
 package com.haliltprkk.movieapplication.presentation.home
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
@@ -39,14 +38,14 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun listeners() {
-        binding.cvSearch.setOnClickListener { startActivity(SearchActivity.createSimpleIntent(this)) }
+        binding.cvSearch.setOnClickListener {
+            startActivity(SearchActivity.createSimpleIntent(this))
+        }
     }
 
     private fun setupObservers() {
-        viewModel.getViewState()
-            .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-            .onEach { state -> handleStateChange(state) }
-            .launchIn(lifecycleScope)
+        viewModel.getViewState().flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+            .onEach { state -> handleStateChange(state) }.launchIn(lifecycleScope)
     }
 
     private fun handleStateChange(state: HomeViewModel.HomeViewState) {
@@ -74,16 +73,13 @@ class HomeActivity : AppCompatActivity() {
     private fun setUpList() {
         binding.rvMovies.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         binding.rvMovies.addSimpleVerticalDecoration(
-            16,
-            includeFirstItem = true,
-            includeLastItem = true
+            16, includeFirstItem = true, includeLastItem = true
         )
         adapter = MovieAdapter(object : MovieItemListener {
             override fun onMovieClicked(movieId: Long) {
                 startActivity(
                     MovieDetailActivity.createSimpleIntent(
-                        this@HomeActivity,
-                        movieId = movieId
+                        this@HomeActivity, movieId = movieId
                     )
                 )
             }

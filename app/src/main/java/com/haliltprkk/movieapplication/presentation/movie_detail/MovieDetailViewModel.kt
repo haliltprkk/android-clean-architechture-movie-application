@@ -8,11 +8,13 @@ import com.haliltprkk.movieapplication.common.UiText
 import com.haliltprkk.movieapplication.domain.model.Movie
 import com.haliltprkk.movieapplication.domain.use_case.movie_detail.GetMovieDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
 import javax.inject.Inject
+import kotlinx.coroutines.flow.*
 
 @HiltViewModel
-class MovieDetailViewModel @Inject constructor(private val getMovieDetailUseCase: GetMovieDetailUseCase) :
+class MovieDetailViewModel @Inject constructor(
+    private val getMovieDetailUseCase: GetMovieDetailUseCase,
+) :
     ViewModel() {
     private val _state = MutableStateFlow<MovieDetailViewState>(MovieDetailViewState.Init)
     fun getViewState(): StateFlow<MovieDetailViewState> = _state.asStateFlow()
@@ -32,8 +34,9 @@ class MovieDetailViewModel @Inject constructor(private val getMovieDetailUseCase
                 is Resource.Success -> {
                     setLoading(false)
                     if (it.data == null) {
-                        _state.value =
-                            MovieDetailViewState.Error(UiText.StringResource(R.string.movieDetailPage_emptyError))
+                        _state.value = MovieDetailViewState.Error(
+                            UiText.StringResource(R.string.movieDetailPage_emptyError)
+                        )
                     } else {
                         _state.value = MovieDetailViewState.Success(data = it.data)
                     }

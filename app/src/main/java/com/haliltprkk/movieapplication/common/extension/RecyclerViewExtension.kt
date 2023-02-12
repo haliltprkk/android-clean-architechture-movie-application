@@ -3,7 +3,6 @@ package com.haliltprkk.movieapplication.common.extension
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.haliltprkk.movieapplication.R
 
 fun RecyclerView.addSimpleVerticalDecoration(
     spaceInDp: Int = 10,

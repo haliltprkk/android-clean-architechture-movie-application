@@ -8,12 +8,11 @@ import com.haliltprkk.movieapplication.common.UiText
 import com.haliltprkk.movieapplication.domain.model.Movie
 import com.haliltprkk.movieapplication.domain.use_case.search.SearchMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import retrofit2.http.Query
-import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(private val searchMovieUseCase: SearchMovieUseCase) :
@@ -42,8 +41,9 @@ class SearchViewModel @Inject constructor(private val searchMovieUseCase: Search
                         if (!it.data.isNullOrEmpty()) {
                             _state.value = SearchViewState.Success(it.data)
                         } else {
-                            _state.value =
-                                SearchViewState.Error(UiText.StringResource(R.string.searchPage_noMovieText))
+                            _state.value = SearchViewState.Error(
+                                UiText.StringResource(R.string.searchPage_noMovieText)
+                            )
                         }
                     }
                 }

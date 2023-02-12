@@ -14,5 +14,4 @@ interface MovieService {
 
     @GET("search/movie")
     suspend fun searchMovie(@Query("query") query: String): SearchMovieDto
-
 }
