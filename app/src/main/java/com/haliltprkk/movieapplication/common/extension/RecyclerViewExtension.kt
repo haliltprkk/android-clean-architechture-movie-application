@@ -3,18 +3,19 @@ package com.haliltprkk.movieapplication.common.extension
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.haliltprkk.movieapplication.R
 
 fun RecyclerView.addSimpleVerticalDecoration(
     spaceInDp: Int = 10,
     includeFirstItem: Boolean,
-    includeLastItem: Boolean
+    includeLastItem: Boolean,
 ) {
     this.addItemDecoration(object : RecyclerView.ItemDecoration() {
         override fun getItemOffsets(
             outRect: Rect,
             view: View,
             parent: RecyclerView,
-            state: RecyclerView.State
+            state: RecyclerView.State,
         ) {
             val itemCount = state.itemCount
             val pos = parent.getChildAdapterPosition(view)
