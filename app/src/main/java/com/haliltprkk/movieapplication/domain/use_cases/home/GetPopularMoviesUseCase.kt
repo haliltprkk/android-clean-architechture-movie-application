@@ -18,8 +18,7 @@ class GetPopularMoviesUseCase @Inject constructor(private val repository: MovieR
     operator fun invoke(page: Int): Flow<Resource<ArrayList<Movie>>> = flow {
         try {
             emit(Resource.Loading())
-            val response =
-                ArrayList(repository.getPopularMovies(page = page).results.map { it.toMovie() })
+            val response = ArrayList(repository.getPopularMovies(page = page).results.map { it.toMovie() })
             emit(Resource.Success(data = response))
         } catch (e: HttpException) {
             emit(Resource.Error(e.handleError()))

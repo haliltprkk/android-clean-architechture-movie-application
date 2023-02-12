@@ -7,8 +7,7 @@ import com.google.gson.Gson
 import com.haliltprkk.movieapplication.BuildConfig
 
 class LocalStorageService(context: Context) {
-    private var preferences: SharedPreferences =
-        context.getSharedPreferences(PREFERENCES_NAME, PREFERENCES_MODE)
+    private var preferences: SharedPreferences = context.getSharedPreferences(PREFERENCES_NAME, PREFERENCES_MODE)
     private var editor: SharedPreferences.Editor = preferences.edit()
     private var gson: Gson
 
@@ -56,8 +55,7 @@ class LocalStorageService(context: Context) {
             instance ?: LocalStorageService(context).also { instance = it }
         }
 
-        private const val PREFERENCES_NAME: String =
-            BuildConfig.APPLICATION_ID
+        private const val PREFERENCES_NAME: String = BuildConfig.APPLICATION_ID
         private const val PREFERENCES_MODE = Activity.MODE_PRIVATE
 
         // keys

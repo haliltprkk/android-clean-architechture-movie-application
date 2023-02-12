@@ -15,8 +15,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(private val searchMovieUseCase: SearchMovieUseCase) :
-    ViewModel() {
+class SearchViewModel @Inject constructor(private val searchMovieUseCase: SearchMovieUseCase) : ViewModel() {
     private val _state = MutableStateFlow<SearchViewState>(SearchViewState.Init)
     fun getViewState(): StateFlow<SearchViewState> = _state.asStateFlow()
     private var searchJob: Job? = null

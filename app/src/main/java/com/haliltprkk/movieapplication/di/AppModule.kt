@@ -3,8 +3,8 @@ package com.haliltprkk.movieapplication.di
 import android.content.Context
 import android.util.Log.VERBOSE
 import com.haliltprkk.movieapplication.BuildConfig
-import com.haliltprkk.movieapplication.data.services.LocalStorageService
 import com.haliltprkk.movieapplication.data.api_services.MovieApiService
+import com.haliltprkk.movieapplication.data.services.LocalStorageService
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
 import dagger.Module
@@ -25,24 +25,20 @@ object AppModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): MovieApiService {
         return Retrofit.Builder().baseUrl(BuildConfig.BASE_URL).client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create()).build()
-            .create(MovieApiService::class.java)
+            .addConverterFactory(GsonConverterFactory.create()).build().create(MovieApiService::class.java)
     }
 
     @Provides
     @Singleton
     fun provideOkHttpClient(httpLoggingInterceptor: LoggingInterceptor): OkHttpClient {
-        val client = OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(
-                Interceptor { chain ->
-                    val original = chain.request()
-                    val url =
-                        original.url.newBuilder().addQueryParameter("api_key", BuildConfig.API_KEY)
-                            .build()
-                    val requestBuilder = original.newBuilder().url(url)
-                    chain.proceed(requestBuilder.build())
-                }
-            ).build()
+        val client = OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).addInterceptor(
+            Interceptor { chain ->
+                val original = chain.request()
+                val url = original.url.newBuilder().addQueryParameter("api_key", BuildConfig.API_KEY).build()
+                val requestBuilder = original.newBuilder().url(url)
+                chain.proceed(requestBuilder.build())
+            },
+        ).build()
         return client
     }
 
@@ -53,6 +49,5 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideLocalStorageService(@ApplicationContext appContext: Context) =
-        LocalStorageService(appContext)
+    fun provideLocalStorageService(@ApplicationContext appContext: Context) = LocalStorageService(appContext)
 }

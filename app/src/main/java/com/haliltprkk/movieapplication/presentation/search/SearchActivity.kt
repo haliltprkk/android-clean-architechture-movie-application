@@ -41,10 +41,8 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun setupObservers() {
-        viewModel.getViewState()
-            .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-            .onEach { state -> handleStateChange(state) }
-            .launchIn(lifecycleScope)
+        viewModel.getViewState().flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+            .onEach { state -> handleStateChange(state) }.launchIn(lifecycleScope)
     }
 
     private fun handleStateChange(state: SearchViewModel.SearchViewState) {
@@ -89,21 +87,17 @@ class SearchActivity : AppCompatActivity() {
     private fun setUpList() {
         binding.rvMovies.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         binding.rvMovies.addSimpleVerticalDecoration(
-            16,
-            includeFirstItem = true,
-            includeLastItem = true
+            16, includeFirstItem = true, includeLastItem = true
         )
-        adapter = SearchMovieAdapter(object :
-                MovieItemListener {
-                override fun onMovieClicked(movieId: Long) {
-                    startActivity(
-                        MovieDetailActivity.createSimpleIntent(
-                            this@SearchActivity,
-                            movieId = movieId
-                        )
+        adapter = SearchMovieAdapter(object : MovieItemListener {
+            override fun onMovieClicked(movieId: Long) {
+                startActivity(
+                    MovieDetailActivity.createSimpleIntent(
+                        this@SearchActivity, movieId = movieId
                     )
-                }
-            })
+                )
+            }
+        })
         binding.rvMovies.adapter = adapter
     }
 
@@ -117,7 +111,6 @@ class SearchActivity : AppCompatActivity() {
     }
 
     companion object {
-        fun createSimpleIntent(context: Context): Intent =
-            Intent(context, SearchActivity::class.java)
+        fun createSimpleIntent(context: Context): Intent = Intent(context, SearchActivity::class.java)
     }
 }

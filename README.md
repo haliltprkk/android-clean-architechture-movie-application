@@ -8,3 +8,4 @@ Simple android movie app to practice clean architecture and popular technologies
 - Retrofit 2 / Okhttp3
 - View Binding
 - ktlint
+

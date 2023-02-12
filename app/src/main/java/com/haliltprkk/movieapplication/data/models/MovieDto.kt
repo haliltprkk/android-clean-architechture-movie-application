@@ -43,16 +43,14 @@ data class MovieDto(
     val voteCount: Int
 )
 
-fun MovieDto.toMovie(): Movie {
-    return Movie(
-        id = id,
-        posterPath = posterPath ?: "",
-        releaseDate = releaseDate,
-        voteAverage = voteAverage,
-        voteCount = voteCount,
-        title = title,
-        overview = overview,
-        genre = if (genres != null && genres.isNotEmpty()) genres[0].name else "",
-        runtime = runtime
-    )
-}
+fun MovieDto.toMovie(): Movie = Movie(
+    id = id,
+    posterPath = posterPath ?: "",
+    releaseDate = releaseDate,
+    voteAverage = voteAverage,
+    voteCount = voteCount,
+    title = title,
+    overview = overview,
+    genre = if (genres != null && genres.isNotEmpty()) genres[0].name else "",
+    runtime = runtime
+)

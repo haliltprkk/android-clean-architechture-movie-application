@@ -12,8 +12,7 @@ import kotlinx.coroutines.flow.*
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val
-    getMoviesUseCase: GetPopularMoviesUseCase
+    private val getMoviesUseCase: GetPopularMoviesUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow<HomeViewState>(HomeViewState.Init)
     fun getViewState(): StateFlow<HomeViewState> = _state.asStateFlow()
