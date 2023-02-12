@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.haliltprkk.movieapplication.R
 import com.haliltprkk.movieapplication.common.Resource
 import com.haliltprkk.movieapplication.common.UiText
-import com.haliltprkk.movieapplication.domain.model.Movie
-import com.haliltprkk.movieapplication.domain.use_case.movie_detail.GetMovieDetailUseCase
+import com.haliltprkk.movieapplication.domain.models.Movie
+import com.haliltprkk.movieapplication.domain.use_cases.movie_detail.GetMovieDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.*

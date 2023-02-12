@@ -17,7 +17,7 @@ import com.haliltprkk.movieapplication.common.UiText
 import com.haliltprkk.movieapplication.common.extension.runTimeToReadableDuration
 import com.haliltprkk.movieapplication.common.extension.toFullImageLink
 import com.haliltprkk.movieapplication.databinding.ActivityMovieDetailBinding
-import com.haliltprkk.movieapplication.domain.model.Movie
+import com.haliltprkk.movieapplication.domain.models.Movie
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

@@ -1,4 +1,4 @@
-package com.haliltprkk.movieapplication.data.local
+package com.haliltprkk.movieapplication.data.services
 
 import android.app.Activity
 import android.content.Context
@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.haliltprkk.movieapplication.BuildConfig
 
-class CacheHelper(context: Context) {
+class LocalStorageService(context: Context) {
     private var preferences: SharedPreferences =
         context.getSharedPreferences(PREFERENCES_NAME, PREFERENCES_MODE)
     private var editor: SharedPreferences.Editor = preferences.edit()
@@ -50,10 +50,10 @@ class CacheHelper(context: Context) {
 
     companion object {
         @Volatile
-        private var instance: CacheHelper? = null
+        private var instance: LocalStorageService? = null
 
         fun getInstance(context: Context) = instance ?: synchronized(this) {
-            instance ?: CacheHelper(context).also { instance = it }
+            instance ?: LocalStorageService(context).also { instance = it }
         }
 
         private const val PREFERENCES_NAME: String =

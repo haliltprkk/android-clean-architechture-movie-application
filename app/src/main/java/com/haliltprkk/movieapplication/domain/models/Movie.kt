@@ -1,8 +1,8 @@
-package com.haliltprkk.movieapplication.domain.model
+package com.haliltprkk.movieapplication.domain.models
 
 import com.google.gson.Gson
-import com.haliltprkk.movieapplication.data.remote.MovieDto
-import com.haliltprkk.movieapplication.data.remote.toMovie
+import com.haliltprkk.movieapplication.data.models.MovieDto
+import com.haliltprkk.movieapplication.data.models.toMovie
 
 data class Movie(
     val id: Long,

@@ -1,6 +1,6 @@
-package com.haliltprkk.movieapplication.data.remote
+package com.haliltprkk.movieapplication.data.models
 
-import com.haliltprkk.movieapplication.domain.model.ErrorModel
+import com.haliltprkk.movieapplication.domain.models.ErrorModel
 
 data class ErrorModelDto(val error: String?)
 

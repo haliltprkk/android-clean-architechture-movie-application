@@ -1,4 +1,4 @@
-package com.haliltprkk.movieapplication.data.remote
+package com.haliltprkk.movieapplication.data.models
 import com.google.gson.annotations.SerializedName
 
 data class SpokenLanguageDto(

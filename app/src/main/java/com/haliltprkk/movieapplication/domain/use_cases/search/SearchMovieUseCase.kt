@@ -1,12 +1,12 @@
-package com.haliltprkk.movieapplication.domain.use_case.search
+package com.haliltprkk.movieapplication.domain.use_cases.search
 
 import com.haliltprkk.movieapplication.R
 import com.haliltprkk.movieapplication.common.Resource
 import com.haliltprkk.movieapplication.common.UiText
 import com.haliltprkk.movieapplication.common.extension.handleError
-import com.haliltprkk.movieapplication.data.remote.toMovie
-import com.haliltprkk.movieapplication.domain.model.Movie
-import com.haliltprkk.movieapplication.domain.repository.MovieRepository
+import com.haliltprkk.movieapplication.data.models.toMovie
+import com.haliltprkk.movieapplication.domain.models.Movie
+import com.haliltprkk.movieapplication.domain.repositories.MovieRepository
 import java.io.IOException
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow

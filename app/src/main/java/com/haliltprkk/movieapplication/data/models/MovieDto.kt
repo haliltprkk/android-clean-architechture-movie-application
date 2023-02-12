@@ -1,7 +1,7 @@
-package com.haliltprkk.movieapplication.data.remote
+package com.haliltprkk.movieapplication.data.models
 
 import com.google.gson.annotations.SerializedName
-import com.haliltprkk.movieapplication.domain.model.Movie
+import com.haliltprkk.movieapplication.domain.models.Movie
 
 data class MovieDto(
     val adult: Boolean,

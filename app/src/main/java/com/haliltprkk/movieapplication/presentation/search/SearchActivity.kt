@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.haliltprkk.movieapplication.common.UiText
 import com.haliltprkk.movieapplication.common.extension.addSimpleVerticalDecoration
 import com.haliltprkk.movieapplication.databinding.ActivitySearchBinding
-import com.haliltprkk.movieapplication.domain.model.Movie
+import com.haliltprkk.movieapplication.domain.models.Movie
 import com.haliltprkk.movieapplication.presentation.movie_detail.MovieDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn

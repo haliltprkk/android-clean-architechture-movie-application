@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.haliltprkk.movieapplication.common.extension.toFullImageLink
 import com.haliltprkk.movieapplication.databinding.ListItemMovieBinding
-import com.haliltprkk.movieapplication.domain.model.Movie
+import com.haliltprkk.movieapplication.domain.models.Movie
 
 class MovieAdapter(
     private val listener: MovieItemListener

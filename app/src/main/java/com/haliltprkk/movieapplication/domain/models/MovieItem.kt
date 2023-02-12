@@ -1,4 +1,4 @@
-package com.haliltprkk.movieapplication.domain.model
+package com.haliltprkk.movieapplication.domain.models
 
 data class MovieItem(val id: String) {
     companion object {

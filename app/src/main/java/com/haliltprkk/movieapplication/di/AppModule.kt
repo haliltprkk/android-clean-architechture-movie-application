@@ -3,8 +3,8 @@ package com.haliltprkk.movieapplication.di
 import android.content.Context
 import android.util.Log.VERBOSE
 import com.haliltprkk.movieapplication.BuildConfig
-import com.haliltprkk.movieapplication.data.local.CacheHelper
-import com.haliltprkk.movieapplication.data.remote.MovieService
+import com.haliltprkk.movieapplication.data.services.LocalStorageService
+import com.haliltprkk.movieapplication.data.api_services.MovieApiService
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
 import dagger.Module
@@ -23,10 +23,10 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): MovieService {
+    fun provideRetrofit(okHttpClient: OkHttpClient): MovieApiService {
         return Retrofit.Builder().baseUrl(BuildConfig.BASE_URL).client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create()).build()
-            .create(MovieService::class.java)
+            .create(MovieApiService::class.java)
     }
 
     @Provides
@@ -53,5 +53,6 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideCacheHelper(@ApplicationContext appContext: Context) = CacheHelper(appContext)
+    fun provideLocalStorageService(@ApplicationContext appContext: Context) =
+        LocalStorageService(appContext)
 }
