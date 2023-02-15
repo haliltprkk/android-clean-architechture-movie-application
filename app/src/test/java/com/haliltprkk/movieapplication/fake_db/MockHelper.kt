@@ -43,5 +43,8 @@ class MockHelper {
             voteAverage = 0.0,
             voteCount = 0
         )
+        val popularMovieListDto = PopularMovieListDto(
+            page = 0, results = listOf(movieDto), totalPages = 0, totalResults = 0
+        )
     }
 }
