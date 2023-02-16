@@ -13,5 +13,8 @@
         <item name="android:statusBarColor">@color/steelGrey</item>
         <item name="android:navigationBarColor">@color/steelGrey</item>
         <item name="colorAccent">@color/secondary</item>
+        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/steelGrey
+        </item>
+
     </style>
 </resources>
