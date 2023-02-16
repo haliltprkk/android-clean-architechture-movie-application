@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:foreground="?selectableItemBackground"
     android:paddingHorizontal="@dimen/horizontal_offset"
-    tools:background="@color/steelGrey">
+    tools:background="@color/steel_grey">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvMovieImage"

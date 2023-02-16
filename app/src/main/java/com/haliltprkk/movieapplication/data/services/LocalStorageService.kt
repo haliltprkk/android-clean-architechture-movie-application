@@ -38,29 +38,18 @@ class LocalStorageService(context: Context) {
         editor.commit()
     }
 
-    fun saveFcmToken(token: String) {
-        editor.putString(FCM_TOKEN, token)
+    fun setSample(sample: String) {
+        editor.putString(SAMPLE, sample)
         editor.commit()
     }
 
-    fun getFcmToken(): String? {
-        return preferences.getString(FCM_TOKEN, "")
-    }
+    fun getSample(): String? = preferences.getString(SAMPLE, "")
 
     companion object {
-        @Volatile
-        private var instance: LocalStorageService? = null
-
-        fun getInstance(context: Context) = instance ?: synchronized(this) {
-            instance ?: LocalStorageService(context).also { instance = it }
-        }
-
         private const val PREFERENCES_NAME: String = BuildConfig.APPLICATION_ID
         private const val PREFERENCES_MODE = Activity.MODE_PRIVATE
 
         // keys
-        private const val USER = "USER"
-        private const val ANON_USER = "ANON_USER"
-        private const val FCM_TOKEN = "FCM_TOKEN"
+        private const val SAMPLE = "SAMPLE"
     }
 }

@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="white_50">#80FFFFFF</color>
@@ -16,10 +11,10 @@
     <color name="ronchi">#F0C74B</color>
     <color name="lynch">#64728E</color>
     <color name="ecstasy">#F7710B</color>
-    <color name="hawaiianTan">#9F5513</color>
-    <color name="fallGreen">#EBE6BF</color>
-    <color name="frenchGrey">#BEBEC1</color>
-    <color name="steelGrey">#1C1C27</color>
+    <color name="hawaiian_tan">#9F5513</color>
+    <color name="fall_green">#EBE6BF</color>
+    <color name="french_grey">#BEBEC1</color>
+    <color name="steel_grey">#1C1C27</color>
     <color name="jumbo">#818186</color>
     <color name="bombay">#ADADB1</color>
     <color name="tuna">#404049</color>
