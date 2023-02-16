@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Movie Application</string>
+    <string name="app_name">Movie App</string>
     <string name="couldntReachServerError">Couldn\'t reach server. Check your internet connection.</string>
     <string name="unexpectedError">An unexpected error occurred</string>
     <string name="homePage_welcomeText">Welcome %s 👋</string>
