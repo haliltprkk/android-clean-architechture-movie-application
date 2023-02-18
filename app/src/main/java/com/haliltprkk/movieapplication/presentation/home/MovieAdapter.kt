@@ -30,13 +30,9 @@ class MovieAdapter(
         notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: ViewModel, position: Int) {
-        with(holder) { bind(data[position]) }
-    }
+    override fun onBindViewHolder(holder: ViewModel, position: Int) = with(holder) { bind(data[position]) }
 
-    override fun getItemCount(): Int {
-        return data.size
-    }
+    override fun getItemCount(): Int = data.size
 }
 
 class ViewModel(
@@ -57,9 +53,7 @@ class ViewModel(
         binding.tvOverview.text = item.overview
     }
 
-    override fun onClick(v: View?) {
-        listener.onMovieClicked(movie.id)
-    }
+    override fun onClick(v: View?) = listener.onMovieClicked(movie.id)
 }
 
 interface MovieItemListener {

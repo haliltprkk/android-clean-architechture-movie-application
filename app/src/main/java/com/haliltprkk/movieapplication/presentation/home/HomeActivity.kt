@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
@@ -14,11 +15,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.haliltprkk.movieapplication.common.UiText
 import com.haliltprkk.movieapplication.common.extension.addSimpleVerticalDecoration
+import com.haliltprkk.movieapplication.data.services.localStorage.LocalStorageService
 import com.haliltprkk.movieapplication.databinding.ActivityHomeBinding
 import com.haliltprkk.movieapplication.domain.models.Movie
 import com.haliltprkk.movieapplication.presentation.movie_detail.MovieDetailActivity
 import com.haliltprkk.movieapplication.presentation.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -28,6 +31,9 @@ class HomeActivity : AppCompatActivity() {
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var adapter: MovieAdapter
 
+    @Inject
+    lateinit var localStorageService: LocalStorageService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -35,13 +41,13 @@ class HomeActivity : AppCompatActivity() {
         listeners()
         setUpList()
         setupObservers()
+        localStorageService.setSample("lorem")
+        val asd = localStorageService.getSample()
+        val asdx = ""
     }
 
-    private fun listeners() {
-        binding.cvSearch.setOnClickListener {
-            startActivity(SearchActivity.createSimpleIntent(this))
-        }
-    }
+    private fun listeners() =
+        binding.cvSearch.setOnClickListener { startActivity(SearchActivity.createSimpleIntent(this)) }
 
     private fun setupObservers() {
         viewModel.getViewState().flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
@@ -58,17 +64,13 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleSuccess(list: ArrayList<Movie>) {
-        adapter.setItems(list)
-    }
+    private fun handleSuccess(list: ArrayList<Movie>) = adapter.setItems(list)
 
     private fun handleLoading(loading: Boolean) {
         binding.progressBar.isVisible = loading
     }
 
-    private fun handleError(error: UiText) {
-        Toast.makeText(this, error.asString(this), Toast.LENGTH_SHORT).show()
-    }
+    private fun handleError(error: UiText) = Toast.makeText(this, error.asString(this), Toast.LENGTH_SHORT).show()
 
     private fun setUpList() {
         binding.rvMovies.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
@@ -77,11 +79,7 @@ class HomeActivity : AppCompatActivity() {
         )
         adapter = MovieAdapter(object : MovieItemListener {
             override fun onMovieClicked(movieId: Long) {
-                startActivity(
-                    MovieDetailActivity.createSimpleIntent(
-                        this@HomeActivity, movieId = movieId
-                    )
-                )
+                startActivity(MovieDetailActivity.createSimpleIntent(this@HomeActivity, movieId = movieId))
             }
         })
         binding.rvMovies.adapter = adapter
