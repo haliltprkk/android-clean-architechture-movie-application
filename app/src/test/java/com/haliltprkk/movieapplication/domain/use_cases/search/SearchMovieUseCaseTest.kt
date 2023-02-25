@@ -5,7 +5,7 @@ import com.haliltprkk.movieapplication.common.Resource
 import com.haliltprkk.movieapplication.common.UiText
 import com.haliltprkk.movieapplication.data.models.*
 import com.haliltprkk.movieapplication.domain.repositories.MovieRepository
-import com.haliltprkk.movieapplication.fake_db.MockHelper
+import com.haliltprkk.movieapplication.utils.MockHelper
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.junit.Before

@@ -1,4 +1,4 @@
-package com.haliltprkk.movieapplication.fake_db
+package com.haliltprkk.movieapplication.utils
 
 import com.haliltprkk.movieapplication.data.models.*
 import java.io.IOException
@@ -43,6 +43,8 @@ class MockHelper {
             voteAverage = 0.0,
             voteCount = 0
         )
+        val movie = movieDto.toMovie()
+        val movieList = arrayListOf(movie)
         val popularMovieListDto = PopularMovieListDto(
             page = 0, results = listOf(movieDto), totalPages = 0, totalResults = 0
         )

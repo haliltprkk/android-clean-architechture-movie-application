@@ -9,6 +9,7 @@ import com.haliltprkk.movieapplication.domain.use_cases.home.GetPopularMoviesUse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -17,32 +18,30 @@ class HomeViewModel @Inject constructor(
     private val _state = MutableStateFlow<HomeViewState>(HomeViewState.Init)
     fun getViewState(): StateFlow<HomeViewState> = _state.asStateFlow()
 
-    init {
-        getMovies(PAGE)
-    }
-
     private fun setLoading(isLoading: Boolean) {
         _state.value = HomeViewState.IsLoading(isLoading)
     }
 
-    private fun getMovies(page: Int) {
-        getMoviesUseCase.invoke(page).onEach { result ->
-            when (result) {
-                is Resource.Error -> {
-                    setLoading(false)
-                    _state.value = HomeViewState.Error(result.message)
-                }
-                is Resource.Loading -> setLoading(true)
-                is Resource.Success -> {
-                    setLoading(false)
-                    if (result.data == null || result.data.size == 0) {
-                        _state.value = HomeViewState.SuccessWithEmptyData
-                    } else {
-                        _state.value = HomeViewState.Success(result.data)
+    fun getMovies(page: Int) {
+        viewModelScope.launch {
+            getMoviesUseCase.getPopularMovies(page).onEach { result ->
+                when (result) {
+                    is Resource.Error -> {
+                        setLoading(false)
+                        _state.value = HomeViewState.Error(result.message)
+                    }
+                    is Resource.Loading -> setLoading(true)
+                    is Resource.Success -> {
+                        setLoading(false)
+                        if (result.data == null || result.data.size == 0) {
+                            _state.value = HomeViewState.SuccessWithEmptyData
+                        } else {
+                            _state.value = HomeViewState.Success(result.data)
+                        }
                     }
                 }
-            }
-        }.launchIn(viewModelScope)
+            }.collect()
+        }
     }
 
     sealed class HomeViewState {
@@ -51,9 +50,5 @@ class HomeViewModel @Inject constructor(
         data class Success(val data: ArrayList<Movie>) : HomeViewState()
         object SuccessWithEmptyData : HomeViewState()
         data class Error(val error: UiText) : HomeViewState()
-    }
-
-    companion object {
-        private const val PAGE = 1
     }
 }

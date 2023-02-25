@@ -4,7 +4,7 @@ import com.google.common.truth.Truth
 import com.haliltprkk.movieapplication.common.Resource
 import com.haliltprkk.movieapplication.common.UiText
 import com.haliltprkk.movieapplication.domain.repositories.MovieRepository
-import com.haliltprkk.movieapplication.fake_db.MockHelper
+import com.haliltprkk.movieapplication.utils.MockHelper
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -24,14 +24,14 @@ class GetPopularMoviesUseCaseTest {
 
     @Before
     fun setUp() {
-        getPopularMoviesUseCase = GetPopularMoviesUseCase(movieRepository)
+        getPopularMoviesUseCase = GetPopularMoviesUseCaseImpl(movieRepository)
     }
 
     @Test
     fun `check getPopularMovies() success case`() = runBlocking {
         // when
         whenever(movieRepository.getPopularMovies(page)).thenAnswer { MockHelper.popularMovieListDto }
-        val result = getPopularMoviesUseCase(page)
+        val result = getPopularMoviesUseCase.getPopularMovies(page)
         val flowList = result.toList()
         // then
         Truth.assertThat(flowList[0]).isInstanceOf(Resource.Loading::class.java)
@@ -42,7 +42,7 @@ class GetPopularMoviesUseCaseTest {
     fun `check getPopularMovies() http exception error case`() = runBlocking {
         // when
         whenever(movieRepository.getPopularMovies(page)).thenAnswer { throw MockHelper.httpException }
-        val result = getPopularMoviesUseCase(page)
+        val result = getPopularMoviesUseCase.getPopularMovies(page)
         val flowList = result.toList()
         // then
         Truth.assertThat(flowList[0]).isInstanceOf(Resource.Loading::class.java)
@@ -54,7 +54,7 @@ class GetPopularMoviesUseCaseTest {
     fun `check getPopularMovies() io exception error case`() = runBlocking {
         // when
         whenever(movieRepository.getPopularMovies(page)).thenAnswer { throw MockHelper.ioException }
-        val result = getPopularMoviesUseCase(page)
+        val result = getPopularMoviesUseCase.getPopularMovies(page)
         val flowList = result.toList()
         // then
 

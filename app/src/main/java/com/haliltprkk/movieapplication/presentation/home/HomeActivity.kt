@@ -30,6 +30,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var adapter: MovieAdapter
+    private val page = 1
 
     @Inject
     lateinit var localStorageService: LocalStorageService
@@ -41,9 +42,7 @@ class HomeActivity : AppCompatActivity() {
         listeners()
         setUpList()
         setupObservers()
-        localStorageService.setSample("lorem")
-        val asd = localStorageService.getSample()
-        val asdx = ""
+        viewModel.getMovies(page)
     }
 
     private fun listeners() =
