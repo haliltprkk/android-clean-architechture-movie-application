@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
@@ -56,7 +55,7 @@ class HomeActivity : AppCompatActivity() {
     private fun handleStateChange(state: HomeViewModel.HomeViewState) {
         when (state) {
             is HomeViewModel.HomeViewState.Init -> Unit
-            is HomeViewModel.HomeViewState.IsLoading -> handleLoading(state.isLoading)
+            is HomeViewModel.HomeViewState.Loading -> handleLoading(state.isLoading)
             is HomeViewModel.HomeViewState.Success -> handleSuccess(state.data)
             is HomeViewModel.HomeViewState.SuccessWithEmptyData -> Unit
             is HomeViewModel.HomeViewState.Error -> handleError(state.error)

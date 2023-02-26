@@ -18,8 +18,8 @@ class HomeViewModel @Inject constructor(
     private val _state = MutableStateFlow<HomeViewState>(HomeViewState.Init)
     fun getViewState(): StateFlow<HomeViewState> = _state.asStateFlow()
 
-    private fun setLoading(isLoading: Boolean) {
-        _state.value = HomeViewState.IsLoading(isLoading)
+    fun setLoading(isLoading: Boolean) {
+        _state.value = HomeViewState.Loading(isLoading)
     }
 
     fun getMovies(page: Int) {
@@ -46,7 +46,7 @@ class HomeViewModel @Inject constructor(
 
     sealed class HomeViewState {
         object Init : HomeViewState()
-        data class IsLoading(val isLoading: Boolean) : HomeViewState()
+        data class Loading(val isLoading: Boolean) : HomeViewState()
         data class Success(val data: ArrayList<Movie>) : HomeViewState()
         object SuccessWithEmptyData : HomeViewState()
         data class Error(val error: UiText) : HomeViewState()
