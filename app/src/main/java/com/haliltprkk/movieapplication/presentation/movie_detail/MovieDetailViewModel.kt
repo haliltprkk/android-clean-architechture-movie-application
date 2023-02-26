@@ -10,6 +10,7 @@ import com.haliltprkk.movieapplication.domain.use_cases.movie_detail.GetMovieDet
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
@@ -18,35 +19,37 @@ class MovieDetailViewModel @Inject constructor(
     private val _state = MutableStateFlow<MovieDetailViewState>(MovieDetailViewState.Init)
     fun getViewState(): StateFlow<MovieDetailViewState> = _state.asStateFlow()
 
-    private fun setLoading(isLoading: Boolean) {
-        _state.value = MovieDetailViewState.IsLoading(isLoading)
+    fun setLoading(isLoading: Boolean) {
+        _state.value = MovieDetailViewState.Loading(isLoading)
     }
 
     fun getMovie(id: Long) {
-        getMovieDetailUseCase.invoke(id).onEach {
-            when (it) {
-                is Resource.Error -> {
-                    setLoading(false)
-                    _state.value = MovieDetailViewState.Error(it.message)
-                }
-                is Resource.Loading -> setLoading(true)
-                is Resource.Success -> {
-                    setLoading(false)
-                    if (it.data == null) {
-                        _state.value = MovieDetailViewState.Error(
-                            UiText.StringResource(R.string.movieDetailPage_emptyError)
-                        )
-                    } else {
-                        _state.value = MovieDetailViewState.Success(data = it.data)
+        viewModelScope.launch {
+            getMovieDetailUseCase.getMovieById(id).onEach {
+                when (it) {
+                    is Resource.Error -> {
+                        setLoading(false)
+                        _state.value = MovieDetailViewState.Error(it.message)
+                    }
+                    is Resource.Loading -> setLoading(true)
+                    is Resource.Success -> {
+                        setLoading(false)
+                        if (it.data == null) {
+                            _state.value = MovieDetailViewState.Error(
+                                UiText.StringResource(R.string.movieDetailPage_emptyError)
+                            )
+                        } else {
+                            _state.value = MovieDetailViewState.Success(data = it.data)
+                        }
                     }
                 }
-            }
-        }.launchIn(viewModelScope)
+            }.collect()
+        }
     }
 
     sealed class MovieDetailViewState {
         object Init : MovieDetailViewState()
-        data class IsLoading(val isLoading: Boolean) : MovieDetailViewState()
+        data class Loading(val isLoading: Boolean) : MovieDetailViewState()
         data class Success(val data: Movie) : MovieDetailViewState()
         data class Error(val error: UiText) : MovieDetailViewState()
     }

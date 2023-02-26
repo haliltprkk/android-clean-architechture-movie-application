@@ -46,7 +46,7 @@ class MovieDetailActivity : AppCompatActivity() {
         when (state) {
             is MovieDetailViewModel.MovieDetailViewState.Error -> handleError(state.error)
             MovieDetailViewModel.MovieDetailViewState.Init -> MovieDetailViewModel.MovieDetailViewState.Init
-            is MovieDetailViewModel.MovieDetailViewState.IsLoading -> handleLoading(state.isLoading)
+            is MovieDetailViewModel.MovieDetailViewState.Loading -> handleLoading(state.isLoading)
             is MovieDetailViewModel.MovieDetailViewState.Success -> handleSuccess(state.data)
         }
     }
