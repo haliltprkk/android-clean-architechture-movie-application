@@ -12,9 +12,6 @@ class MockHelper {
     companion object {
         private const val errorJson = "{\"error\":\"\"}"
         val searchMovieDt = SearchMovieDto(0, listOf(), 0, 0)
-        val httpException = HttpException(
-            Response.error<ResponseBody>(500, errorJson.toResponseBody("plain/text".toMediaTypeOrNull()))
-        )
         val ioException = IOException()
         val movieDto = MovieDto(
             adult = false,
@@ -48,5 +45,11 @@ class MockHelper {
         val popularMovieListDto = PopularMovieListDto(
             page = 0, results = listOf(movieDto), totalPages = 0, totalResults = 0
         )
+
+        fun getHttpException(): HttpException {
+            return HttpException(
+                Response.error<ResponseBody>(500, errorJson.toResponseBody("plain/text".toMediaTypeOrNull()))
+            )
+        }
     }
 }

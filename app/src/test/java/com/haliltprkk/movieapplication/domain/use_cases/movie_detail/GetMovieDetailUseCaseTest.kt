@@ -1,6 +1,6 @@
 package com.haliltprkk.movieapplication.domain.use_cases.movie_detail
 
-import com.google.common.truth.Truth
+import com.google.common.truth.Truth.assertThat
 import com.haliltprkk.movieapplication.common.Resource
 import com.haliltprkk.movieapplication.common.UiText
 import com.haliltprkk.movieapplication.domain.repositories.MovieRepository
@@ -26,30 +26,6 @@ class GetMovieDetailUseCaseTest {
     fun setUp() {
         getMovieDetailUseCase = GetMovieDetailUseCaseImpl(movieRepository)
     }
-
-    @Test
-    fun `check getMovie() success case`() = runBlocking {
-        // when
-        whenever(movieRepository.getMovie(movieId)).thenAnswer { MockHelper.movieDto }
-        val result = getMovieDetailUseCase.getMovieById(movieId)
-        val flowList = result.toList()
-        // then
-        Truth.assertThat(flowList[0]).isInstanceOf(Resource.Loading::class.java)
-        Truth.assertThat(flowList[1]).isInstanceOf(Resource.Success::class.java)
-    }
-
-    @Test
-    fun `check getMovie() http exception error case`() = runBlocking {
-        // when
-        whenever(movieRepository.getMovie(movieId)).thenAnswer { throw MockHelper.httpException }
-        val result = getMovieDetailUseCase.getMovieById(movieId)
-        val flowList = result.toList()
-        // then
-        Truth.assertThat(flowList[0]).isInstanceOf(Resource.Loading::class.java)
-        Truth.assertThat(flowList[1]).isInstanceOf(Resource.Error::class.java)
-        Truth.assertThat(flowList[1].message).isInstanceOf(UiText.DynamicString::class.java)
-    }
-
     @Test
     fun `check getMovie() io exception error case`() = runBlocking {
         // when
@@ -58,8 +34,30 @@ class GetMovieDetailUseCaseTest {
         val flowList = result.toList()
         // then
 
-        Truth.assertThat(flowList[0]).isInstanceOf(Resource.Loading::class.java)
-        Truth.assertThat(flowList[1]).isInstanceOf(Resource.Error::class.java)
-        Truth.assertThat(flowList[1].message).isInstanceOf(UiText.StringResource::class.java)
+        assertThat(flowList[0]).isInstanceOf(Resource.Loading::class.java)
+        assertThat(flowList[1]).isInstanceOf(Resource.Error::class.java)
+        assertThat(flowList[1].message).isInstanceOf(UiText.StringResource::class.java)
+    }
+
+    @Test
+    fun `check getMovie() http exception error case`() = runBlocking {
+        // when
+        whenever(movieRepository.getMovie(movieId)).thenAnswer { throw MockHelper.getHttpException() }
+        val result = getMovieDetailUseCase.getMovieById(movieId)
+        val flowList = result.toList()
+        // then
+        assertThat(flowList[0]).isInstanceOf(Resource.Loading::class.java)
+        assertThat(flowList[1]).isInstanceOf(Resource.Error::class.java)
+        assertThat(flowList[1].message).isInstanceOf(UiText.DynamicString::class.java)
+    }
+    @Test
+    fun `check getMovie() success case`() = runBlocking {
+        // when
+        whenever(movieRepository.getMovie(movieId)).thenAnswer { MockHelper.movieDto }
+        val result = getMovieDetailUseCase.getMovieById(movieId)
+        val flowList = result.toList()
+        // then
+        assertThat(flowList[0]).isInstanceOf(Resource.Loading::class.java)
+        assertThat(flowList[1]).isInstanceOf(Resource.Success::class.java)
     }
 }

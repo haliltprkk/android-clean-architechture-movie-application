@@ -4,6 +4,8 @@ import com.haliltprkk.movieapplication.domain.use_cases.home.GetPopularMoviesUse
 import com.haliltprkk.movieapplication.domain.use_cases.home.GetPopularMoviesUseCaseImpl
 import com.haliltprkk.movieapplication.domain.use_cases.movie_detail.GetMovieDetailUseCase
 import com.haliltprkk.movieapplication.domain.use_cases.movie_detail.GetMovieDetailUseCaseImpl
+import com.haliltprkk.movieapplication.domain.use_cases.search.SearchMovieUseCase
+import com.haliltprkk.movieapplication.domain.use_cases.search.SearchMovieUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -21,4 +23,9 @@ abstract class UserCaseModule {
     abstract fun bindGetMovieDetailUseCase(
         getMovieDetailUseCaseImpl: GetMovieDetailUseCaseImpl
     ): GetMovieDetailUseCase
+
+    @Binds
+    abstract fun bindSearchMovieUseCase(
+        searchMovieUseCaseImpl: SearchMovieUseCaseImpl
+    ): SearchMovieUseCase
 }

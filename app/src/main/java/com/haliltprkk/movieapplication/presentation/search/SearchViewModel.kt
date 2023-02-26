@@ -20,15 +20,15 @@ class SearchViewModel @Inject constructor(private val searchMovieUseCase: Search
     fun getViewState(): StateFlow<SearchViewState> = _state.asStateFlow()
     private var searchJob: Job? = null
 
-    private fun setLoading(isLoading: Boolean) {
-        _state.value = SearchViewState.IsLoading(isLoading)
+    fun setLoading(isLoading: Boolean) {
+        _state.value = SearchViewState.Loading(isLoading)
     }
 
     fun searchMovie(query: String) {
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
             delay(500L)
-            searchMovieUseCase.invoke(query).onEach {
+            searchMovieUseCase.searchMovie(query).onEach {
                 when (it) {
                     is Resource.Error -> {
                         setLoading(false)
@@ -52,7 +52,7 @@ class SearchViewModel @Inject constructor(private val searchMovieUseCase: Search
 
     sealed class SearchViewState {
         object Init : SearchViewState()
-        data class IsLoading(val isLoading: Boolean) : SearchViewState()
+        data class Loading(val isLoading: Boolean) : SearchViewState()
         data class Success(val data: ArrayList<Movie>) : SearchViewState()
         data class Error(val error: UiText) : SearchViewState()
     }

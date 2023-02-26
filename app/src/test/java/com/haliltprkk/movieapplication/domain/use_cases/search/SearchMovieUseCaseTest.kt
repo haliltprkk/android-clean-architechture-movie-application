@@ -25,14 +25,14 @@ class SearchMovieUseCaseTest {
 
     @Before
     fun setUp() {
-        searchMovieUseCase = SearchMovieUseCase(movieRepository)
+        searchMovieUseCase = SearchMovieUseCaseImpl(movieRepository)
     }
 
     @Test
     fun `check searchMovie() success case`() = runBlocking {
         // when
         whenever(movieRepository.searchMovie(query)).thenAnswer { MockHelper.searchMovieDt }
-        val result = searchMovieUseCase(query)
+        val result = searchMovieUseCase.searchMovie(query)
         val flowList = result.toList()
         // then
         assertThat(flowList[0]).isInstanceOf(Resource.Loading::class.java)
@@ -42,8 +42,8 @@ class SearchMovieUseCaseTest {
     @Test
     fun `check searchMovie() http exception error case`() = runBlocking {
         // when
-        whenever(movieRepository.searchMovie(query)).thenAnswer { throw MockHelper.httpException }
-        val result = searchMovieUseCase(query)
+        whenever(movieRepository.searchMovie(query)).thenAnswer { throw MockHelper.getHttpException() }
+        val result = searchMovieUseCase.searchMovie(query)
         val flowList = result.toList()
         // then
         assertThat(flowList[0]).isInstanceOf(Resource.Loading::class.java)
@@ -55,7 +55,7 @@ class SearchMovieUseCaseTest {
     fun `check searchMovie() io exception error case`() = runBlocking {
         // when
         whenever(movieRepository.searchMovie(query)).thenAnswer { throw MockHelper.ioException }
-        val result = searchMovieUseCase(query)
+        val result = searchMovieUseCase.searchMovie(query)
         val flowList = result.toList()
         // then
         assertThat(flowList[0]).isInstanceOf(Resource.Loading::class.java)

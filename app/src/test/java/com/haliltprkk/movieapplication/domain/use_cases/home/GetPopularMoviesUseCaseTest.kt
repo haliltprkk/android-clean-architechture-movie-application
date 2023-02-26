@@ -1,6 +1,6 @@
 package com.haliltprkk.movieapplication.domain.use_cases.home
 
-import com.google.common.truth.Truth
+import com.google.common.truth.Truth.assertThat
 import com.haliltprkk.movieapplication.common.Resource
 import com.haliltprkk.movieapplication.common.UiText
 import com.haliltprkk.movieapplication.domain.repositories.MovieRepository
@@ -34,20 +34,20 @@ class GetPopularMoviesUseCaseTest {
         val result = getPopularMoviesUseCase.getPopularMovies(page)
         val flowList = result.toList()
         // then
-        Truth.assertThat(flowList[0]).isInstanceOf(Resource.Loading::class.java)
-        Truth.assertThat(flowList[1]).isInstanceOf(Resource.Success::class.java)
+        assertThat(flowList[0]).isInstanceOf(Resource.Loading::class.java)
+        assertThat(flowList[1]).isInstanceOf(Resource.Success::class.java)
     }
 
     @Test
     fun `check getPopularMovies() http exception error case`() = runBlocking {
         // when
-        whenever(movieRepository.getPopularMovies(page)).thenAnswer { throw MockHelper.httpException }
+        whenever(movieRepository.getPopularMovies(page)).thenAnswer { throw MockHelper.getHttpException() }
         val result = getPopularMoviesUseCase.getPopularMovies(page)
         val flowList = result.toList()
         // then
-        Truth.assertThat(flowList[0]).isInstanceOf(Resource.Loading::class.java)
-        Truth.assertThat(flowList[1]).isInstanceOf(Resource.Error::class.java)
-        Truth.assertThat(flowList[1].message).isInstanceOf(UiText.DynamicString::class.java)
+        assertThat(flowList[0]).isInstanceOf(Resource.Loading::class.java)
+        assertThat(flowList[1]).isInstanceOf(Resource.Error::class.java)
+        assertThat(flowList[1].message).isInstanceOf(UiText.DynamicString::class.java)
     }
 
     @Test
@@ -58,8 +58,8 @@ class GetPopularMoviesUseCaseTest {
         val flowList = result.toList()
         // then
 
-        Truth.assertThat(flowList[0]).isInstanceOf(Resource.Loading::class.java)
-        Truth.assertThat(flowList[1]).isInstanceOf(Resource.Error::class.java)
-        Truth.assertThat(flowList[1].message).isInstanceOf(UiText.StringResource::class.java)
+        assertThat(flowList[0]).isInstanceOf(Resource.Loading::class.java)
+        assertThat(flowList[1]).isInstanceOf(Resource.Error::class.java)
+        assertThat(flowList[1].message).isInstanceOf(UiText.StringResource::class.java)
     }
 }

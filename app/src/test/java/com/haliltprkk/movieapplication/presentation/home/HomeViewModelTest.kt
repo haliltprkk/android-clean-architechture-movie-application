@@ -3,6 +3,7 @@ package com.haliltprkk.movieapplication.presentation.home
 import com.google.common.truth.Truth.assertThat
 import com.haliltprkk.movieapplication.common.Resource
 import com.haliltprkk.movieapplication.common.UiText
+import com.haliltprkk.movieapplication.domain.models.Movie
 import com.haliltprkk.movieapplication.domain.use_cases.home.GetPopularMoviesUseCase
 import com.haliltprkk.movieapplication.utils.MockHelper
 import kotlinx.coroutines.Dispatchers
@@ -46,6 +47,16 @@ class HomeViewModelTest {
         viewModel.getMovies(page)
         val currentState = viewModel.getViewState()
         assertThat(currentState.value).isInstanceOf(HomeViewModel.HomeViewState.Success::class.java)
+    }
+
+    @Test
+    fun `searchMovieUseCase emits success with empty list`() = runTest {
+        whenever(getPopularMoviesUseCase.getPopularMovies(any())).thenAnswer {
+            flow { emit(Resource.Success(data = arrayListOf<Movie>())) }
+        }
+        viewModel.getMovies(page)
+        val currentState = viewModel.getViewState()
+        assertThat(currentState.value).isInstanceOf(HomeViewModel.HomeViewState.SuccessWithEmptyData::class.java)
     }
 
     @Test

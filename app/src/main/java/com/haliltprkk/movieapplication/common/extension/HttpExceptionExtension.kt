@@ -9,6 +9,7 @@ import retrofit2.HttpException
 
 val gson = Gson()
 
+@Synchronized
 fun HttpException.handleError(): UiText {
     val errorString = this.response()?.errorBody()?.string()
     errorString?.let {

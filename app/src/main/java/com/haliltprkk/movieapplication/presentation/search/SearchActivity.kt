@@ -49,7 +49,7 @@ class SearchActivity : AppCompatActivity() {
         when (state) {
             is SearchViewModel.SearchViewState.Error -> handleError(state.error)
             SearchViewModel.SearchViewState.Init -> Unit
-            is SearchViewModel.SearchViewState.IsLoading -> handleLoading(state.isLoading)
+            is SearchViewModel.SearchViewState.Loading -> handleLoading(state.isLoading)
             is SearchViewModel.SearchViewState.Success -> handleSuccess(state.data)
         }
     }

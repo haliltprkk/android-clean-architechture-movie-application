@@ -40,7 +40,7 @@ class HomeViewModel @Inject constructor(
                         }
                     }
                 }
-            }.collect()
+            }.launchIn(this)
         }
     }
 

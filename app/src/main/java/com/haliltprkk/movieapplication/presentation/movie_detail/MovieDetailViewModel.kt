@@ -43,7 +43,7 @@ class MovieDetailViewModel @Inject constructor(
                         }
                     }
                 }
-            }.collect()
+            }.launchIn(this)
         }
     }
 
