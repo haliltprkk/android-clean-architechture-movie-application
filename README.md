@@ -3,7 +3,7 @@
 Simple android movie application to practice clean architecture and some popular
 methodologies/technologies.
 
-## Tech Stack
+## Tech Stack ⚙️
 
 - Hilt
 - Coroutine Flow
@@ -14,6 +14,6 @@ methodologies/technologies.
 - View Binding
 - ktlint
 
-## Screenshots
+## Screenshots 📸
 
-<img src="/screenShots/splashPage.png" width="220"> &emsp;<img src="/screenShots/homePage.png" width="220"> &emsp;<img src="/screenShots/searchPage.png" width="220"> &emsp;<img src="/screenShots/homePage.png" width="220"> &emsp;<img src="/screenShots/detailPage.png" width="220">
+<img src="/screenShots/splashPage.png" width="230"> &emsp;<img src="/screenShots/homePage.png" width="230"> &emsp;<img src="/screenShots/searchPage.png" width="230"> &emsp;<img src="/screenShots/detailPage.png" width="230">
