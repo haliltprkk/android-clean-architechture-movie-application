@@ -7,7 +7,6 @@ import javax.inject.Inject
 
 class GetPopularMoviesUseCaseImpl @Inject constructor(private val repository: MovieRepository) :
     GetPopularMoviesUseCase {
-
     override suspend fun getPopularMovies(page: Int) =
         performRequest(
             mapper = { response -> ArrayList(response.results.map { it.toMovie() }) },
