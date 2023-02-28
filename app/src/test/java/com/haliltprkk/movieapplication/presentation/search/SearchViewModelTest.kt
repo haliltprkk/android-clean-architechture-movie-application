@@ -1,8 +1,8 @@
 package com.haliltprkk.movieapplication.presentation.search
 
 import com.google.common.truth.Truth.assertThat
-import com.haliltprkk.movieapplication.common.Resource
-import com.haliltprkk.movieapplication.common.UiText
+import com.haliltprkk.movieapplication.common.utils.Resource
+import com.haliltprkk.movieapplication.common.utils.UiText
 import com.haliltprkk.movieapplication.domain.models.Movie
 import com.haliltprkk.movieapplication.domain.use_cases.search.SearchMovieUseCase
 import com.haliltprkk.movieapplication.utils.MockHelper

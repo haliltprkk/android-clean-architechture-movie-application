@@ -12,8 +12,8 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.haliltprkk.movieapplication.common.UiText
 import com.haliltprkk.movieapplication.common.extension.addSimpleVerticalDecoration
+import com.haliltprkk.movieapplication.common.utils.UiText
 import com.haliltprkk.movieapplication.data.services.localStorage.LocalStorageService
 import com.haliltprkk.movieapplication.databinding.ActivityHomeBinding
 import com.haliltprkk.movieapplication.domain.models.Movie

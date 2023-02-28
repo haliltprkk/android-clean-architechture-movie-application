@@ -2,8 +2,8 @@ package com.haliltprkk.movieapplication.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.haliltprkk.movieapplication.common.Resource
-import com.haliltprkk.movieapplication.common.UiText
+import com.haliltprkk.movieapplication.common.utils.Resource
+import com.haliltprkk.movieapplication.common.utils.UiText
 import com.haliltprkk.movieapplication.domain.models.Movie
 import com.haliltprkk.movieapplication.domain.use_cases.home.GetPopularMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

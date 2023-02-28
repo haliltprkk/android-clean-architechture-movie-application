@@ -1,4 +1,4 @@
-package com.haliltprkk.movieapplication.common
+package com.haliltprkk.movieapplication.common.utils
 
 class Constants {
     companion object {

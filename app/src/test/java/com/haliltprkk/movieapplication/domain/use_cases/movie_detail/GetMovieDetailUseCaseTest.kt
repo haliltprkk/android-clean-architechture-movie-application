@@ -1,8 +1,8 @@
 package com.haliltprkk.movieapplication.domain.use_cases.movie_detail
 
 import com.google.common.truth.Truth.assertThat
-import com.haliltprkk.movieapplication.common.Resource
-import com.haliltprkk.movieapplication.common.UiText
+import com.haliltprkk.movieapplication.common.utils.Resource
+import com.haliltprkk.movieapplication.common.utils.UiText
 import com.haliltprkk.movieapplication.domain.repositories.MovieRepository
 import com.haliltprkk.movieapplication.utils.MockHelper
 import kotlinx.coroutines.flow.toList

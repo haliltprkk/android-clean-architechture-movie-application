@@ -12,10 +12,10 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.haliltprkk.movieapplication.R
-import com.haliltprkk.movieapplication.common.Constants.Companion.ARG_ID
-import com.haliltprkk.movieapplication.common.UiText
 import com.haliltprkk.movieapplication.common.extension.runTimeToReadableDuration
 import com.haliltprkk.movieapplication.common.extension.toFullImageLink
+import com.haliltprkk.movieapplication.common.utils.Constants.Companion.ARG_ID
+import com.haliltprkk.movieapplication.common.utils.UiText
 import com.haliltprkk.movieapplication.databinding.ActivityMovieDetailBinding
 import com.haliltprkk.movieapplication.domain.models.Movie
 import dagger.hilt.android.AndroidEntryPoint
