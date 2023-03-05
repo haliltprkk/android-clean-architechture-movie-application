@@ -1,4 +1,4 @@
-package com.haliltprkk.movieapplication.data.local
+package com.haliltprkk.movieapplication.data.local.entities
 import androidx.room.Entity
 
 @Entity

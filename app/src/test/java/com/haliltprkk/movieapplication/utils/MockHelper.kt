@@ -19,7 +19,6 @@ class MockHelper {
         val movieDto = MovieDto(
             adult = false,
             backdropPath = "",
-            belongsToCollection = "",
             budget = 0,
             genres = listOf(),
             homepage = "",

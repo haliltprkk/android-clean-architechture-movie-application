@@ -1,17 +1,15 @@
-package com.haliltprkk.movieapplication.data.local
+package com.haliltprkk.movieapplication.data.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.haliltprkk.movieapplication.data.remote.GenreDto
 
-@Entity
+@Entity(tableName = "movies")
 data class MovieEntity(
     @PrimaryKey val id: Long,
     val adult: Boolean,
     val backdropPath: String,
-    val belongsToCollection: Any,
     val budget: Int,
-    val genres: List<GenreDto>?,
+    val genres: List<GenreEntity>?,
     val homepage: String,
     val imdbId: String,
     val originalLanguage: String,
@@ -20,7 +18,7 @@ data class MovieEntity(
     val popularity: Double,
     val posterPath: String?,
     val productionCompanies: List<ProductionCompanyEntity>,
-    val productionCountries: List<ProductionCompanyEntity>,
+    val productionCountries: List<ProductionCountryEntity>,
     val releaseDate: String,
     val revenue: Int,
     val runtime: Int,
