@@ -1,4 +1,4 @@
-package com.haliltprkk.movieapplication.data.models
+package com.haliltprkk.movieapplication.data.remote
 import com.google.gson.annotations.SerializedName
 
 data class ProductionCompanyDto(

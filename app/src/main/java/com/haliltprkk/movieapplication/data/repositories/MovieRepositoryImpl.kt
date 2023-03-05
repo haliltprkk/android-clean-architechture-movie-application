@@ -1,9 +1,9 @@
 package com.haliltprkk.movieapplication.data.repositories
 
 import com.haliltprkk.movieapplication.data.api_services.MovieApiService
-import com.haliltprkk.movieapplication.data.models.MovieDto
-import com.haliltprkk.movieapplication.data.models.PopularMovieListDto
-import com.haliltprkk.movieapplication.data.models.SearchMovieDto
+import com.haliltprkk.movieapplication.data.remote.MovieDto
+import com.haliltprkk.movieapplication.data.remote.PopularMovieListDto
+import com.haliltprkk.movieapplication.data.remote.SearchMovieDto
 import com.haliltprkk.movieapplication.domain.repositories.MovieRepository
 import javax.inject.Inject
 

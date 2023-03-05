@@ -1,4 +1,4 @@
-package com.haliltprkk.movieapplication.data.models
+package com.haliltprkk.movieapplication.data.remote
 
 data class GenreDto(
     val id: Int,

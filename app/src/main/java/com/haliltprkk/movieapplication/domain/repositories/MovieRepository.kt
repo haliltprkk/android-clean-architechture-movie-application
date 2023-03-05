@@ -1,8 +1,8 @@
 package com.haliltprkk.movieapplication.domain.repositories
 
-import com.haliltprkk.movieapplication.data.models.MovieDto
-import com.haliltprkk.movieapplication.data.models.PopularMovieListDto
-import com.haliltprkk.movieapplication.data.models.SearchMovieDto
+import com.haliltprkk.movieapplication.data.remote.MovieDto
+import com.haliltprkk.movieapplication.data.remote.PopularMovieListDto
+import com.haliltprkk.movieapplication.data.remote.SearchMovieDto
 
 interface MovieRepository {
     suspend fun getPopularMovies(page: Int): PopularMovieListDto

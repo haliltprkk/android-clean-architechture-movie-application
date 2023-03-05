@@ -1,6 +1,9 @@
 package com.haliltprkk.movieapplication.utils
 
-import com.haliltprkk.movieapplication.data.models.*
+import com.haliltprkk.movieapplication.data.remote.MovieDto
+import com.haliltprkk.movieapplication.data.remote.PopularMovieListDto
+import com.haliltprkk.movieapplication.data.remote.SearchMovieDto
+import com.haliltprkk.movieapplication.data.remote.toMovie
 import java.io.IOException
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody
