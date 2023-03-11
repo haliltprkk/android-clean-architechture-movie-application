@@ -11,6 +11,7 @@ methodologies/technologies.
 - Google Truth
 - Mockito
 - Retrofit 2 / Okhttp3
+- Room
 - View Binding
 - ktlint
 
