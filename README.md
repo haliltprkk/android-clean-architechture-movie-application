@@ -14,6 +14,7 @@ methodologies/technologies.
 - Room
 - View Binding
 - ktlint
+- LeakCanary
 
 ## Screenshots 📸
 
