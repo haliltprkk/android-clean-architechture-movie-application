@@ -1,9 +1,9 @@
 package com.haliltprkk.movieapplication.utils
 
-import com.haliltprkk.movieapplication.data.remote.MovieDto
-import com.haliltprkk.movieapplication.data.remote.PopularMovieListDto
-import com.haliltprkk.movieapplication.data.remote.SearchMovieDto
-import com.haliltprkk.movieapplication.data.remote.toMovie
+import com.haliltprkk.movieapplication.data.remote.models.MovieDto
+import com.haliltprkk.movieapplication.data.remote.models.response.PopularMovieListDto
+import com.haliltprkk.movieapplication.data.remote.models.response.SearchMovieResponseDto
+import com.haliltprkk.movieapplication.domain.mappers.MovieMapper
 import java.io.IOException
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody
@@ -14,7 +14,7 @@ import retrofit2.Response
 class MockHelper {
     companion object {
         private const val errorJson = "{\"error\":\"\"}"
-        val searchMovieDt = SearchMovieDto(0, listOf(), 0, 0)
+        val searchMovieDt = SearchMovieResponseDto(0, listOf(), 0, 0)
         val ioException = IOException()
         val movieDto = MovieDto(
             adult = false,
@@ -29,20 +29,16 @@ class MockHelper {
             overview = "",
             popularity = 0.0,
             posterPath = "",
-            productionCompanies = listOf(),
-            productionCountries = listOf(),
             releaseDate = "",
             revenue = 0,
             runtime = 0,
-            spokenLanguages = listOf(),
             status = "",
             tagline = "",
             title = "",
             video = false,
             voteAverage = 0.0,
-            voteCount = 0
         )
-        val movie = movieDto.toMovie()
+        val movie = MovieMapper().fromDtoToDomain(movieDto)
         val movieList = arrayListOf(movie)
         val popularMovieListDto = PopularMovieListDto(
             page = 0, results = listOf(movieDto), totalPages = 0, totalResults = 0

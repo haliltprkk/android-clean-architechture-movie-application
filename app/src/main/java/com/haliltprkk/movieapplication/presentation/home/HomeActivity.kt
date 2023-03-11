@@ -62,7 +62,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleSuccess(list: ArrayList<Movie>) = adapter.setItems(list)
+    private fun handleSuccess(list: List<Movie>) = adapter.setItems(list)
 
     private fun handleLoading(loading: Boolean) {
         binding.progressBar.isVisible = loading

@@ -54,7 +54,7 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleSuccess(data: ArrayList<Movie>) {
+    private fun handleSuccess(data: List<Movie>) {
         binding.viewError.tvError.visibility = View.GONE
         adapter.setItems(data)
     }

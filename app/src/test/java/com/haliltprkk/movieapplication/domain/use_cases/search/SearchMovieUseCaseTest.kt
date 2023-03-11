@@ -3,7 +3,7 @@ package com.haliltprkk.movieapplication.domain.use_cases.search
 import com.google.common.truth.Truth.assertThat
 import com.haliltprkk.movieapplication.common.utils.Resource
 import com.haliltprkk.movieapplication.common.utils.UiText
-import com.haliltprkk.movieapplication.data.models.*
+import com.haliltprkk.movieapplication.domain.mappers.MovieMapper
 import com.haliltprkk.movieapplication.domain.repositories.MovieRepository
 import com.haliltprkk.movieapplication.utils.MockHelper
 import kotlinx.coroutines.flow.toList
@@ -21,11 +21,14 @@ class SearchMovieUseCaseTest {
 
     @Mock
     private lateinit var movieRepository: MovieRepository
+
+    @Mock
+    private lateinit var mapper: MovieMapper
     private val query: String = "query"
 
     @Before
     fun setUp() {
-        searchMovieUseCase = SearchMovieUseCaseImpl(movieRepository)
+        searchMovieUseCase = SearchMovieUseCaseImpl(movieRepository, mapper)
     }
 
     @Test

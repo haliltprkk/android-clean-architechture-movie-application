@@ -3,6 +3,7 @@ package com.haliltprkk.movieapplication.domain.use_cases.movie_detail
 import com.google.common.truth.Truth.assertThat
 import com.haliltprkk.movieapplication.common.utils.Resource
 import com.haliltprkk.movieapplication.common.utils.UiText
+import com.haliltprkk.movieapplication.domain.mappers.MovieMapper
 import com.haliltprkk.movieapplication.domain.repositories.MovieRepository
 import com.haliltprkk.movieapplication.utils.MockHelper
 import kotlinx.coroutines.flow.toList
@@ -20,12 +21,16 @@ class GetMovieDetailUseCaseTest {
 
     @Mock
     private lateinit var movieRepository: MovieRepository
+
+    @Mock
+    private lateinit var mapper: MovieMapper
     private val movieId: Long = 0
 
     @Before
     fun setUp() {
-        getMovieDetailUseCase = GetMovieDetailUseCaseImpl(movieRepository)
+        getMovieDetailUseCase = GetMovieDetailUseCaseImpl(movieRepository, mapper)
     }
+
     @Test
     fun `check getMovie() io exception error case`() = runBlocking {
         // when
@@ -50,6 +55,7 @@ class GetMovieDetailUseCaseTest {
         assertThat(flowList[1]).isInstanceOf(Resource.Error::class.java)
         assertThat(flowList[1].message).isInstanceOf(UiText.DynamicString::class.java)
     }
+
     @Test
     fun `check getMovie() success case`() = runBlocking {
         // when

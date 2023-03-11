@@ -2,7 +2,7 @@ package com.haliltprkk.movieapplication.di
 
 import android.util.Log
 import com.haliltprkk.movieapplication.BuildConfig
-import com.haliltprkk.movieapplication.data.api_services.MovieApiService
+import com.haliltprkk.movieapplication.data.remote.api_services.MovieApiService
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
 import dagger.Module

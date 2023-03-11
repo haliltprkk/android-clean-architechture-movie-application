@@ -53,7 +53,7 @@ class SearchViewModel @Inject constructor(private val searchMovieUseCase: Search
     sealed class SearchViewState {
         object Init : SearchViewState()
         data class Loading(val isLoading: Boolean) : SearchViewState()
-        data class Success(val data: ArrayList<Movie>) : SearchViewState()
+        data class Success(val data: List<Movie>) : SearchViewState()
         data class Error(val error: UiText) : SearchViewState()
     }
 }

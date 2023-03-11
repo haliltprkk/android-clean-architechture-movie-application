@@ -23,12 +23,12 @@ class LocalStorageService @Inject constructor(
 
     fun removeObject(key: String) = keyValueStore.remove(key)
 
-    fun setSample(sample: String) = keyValueStore.setString(KEY_SAMPLE, sample)
+    fun setLastUpdateTime(lastTimeFetched: Long) = keyValueStore.setLong(LAST_UPDATE_TIME, lastTimeFetched)
 
-    fun getSample(): String? = keyValueStore.getString(KEY_SAMPLE)
+    fun getLastUpdateTime(): Long? = keyValueStore.getLong(LAST_UPDATE_TIME)
 
     companion object {
         // keys
-        const val KEY_SAMPLE = "SAMPLE"
+        const val LAST_UPDATE_TIME = "LAST_UPDATE_TIME"
     }
 }

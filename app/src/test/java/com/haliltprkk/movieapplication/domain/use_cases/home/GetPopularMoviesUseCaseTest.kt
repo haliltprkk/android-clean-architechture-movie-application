@@ -3,6 +3,8 @@ package com.haliltprkk.movieapplication.domain.use_cases.home
 import com.google.common.truth.Truth.assertThat
 import com.haliltprkk.movieapplication.common.utils.Resource
 import com.haliltprkk.movieapplication.common.utils.UiText
+import com.haliltprkk.movieapplication.data.services.localStorage.LocalStorageService
+import com.haliltprkk.movieapplication.domain.mappers.MovieMapper
 import com.haliltprkk.movieapplication.domain.repositories.MovieRepository
 import com.haliltprkk.movieapplication.utils.MockHelper
 import kotlinx.coroutines.flow.toList
@@ -20,11 +22,17 @@ class GetPopularMoviesUseCaseTest {
 
     @Mock
     private lateinit var movieRepository: MovieRepository
+
+    @Mock
+    private lateinit var localeStorageService: LocalStorageService
+
+    @Mock
+    private lateinit var mapper: MovieMapper
     private val page: Int = 0
 
     @Before
     fun setUp() {
-        getPopularMoviesUseCase = GetPopularMoviesUseCaseImpl(movieRepository)
+        getPopularMoviesUseCase = GetPopularMoviesUseCaseImpl(movieRepository, localeStorageService, mapper)
     }
 
     @Test

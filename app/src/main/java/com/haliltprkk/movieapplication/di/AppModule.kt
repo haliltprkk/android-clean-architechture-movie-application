@@ -8,10 +8,12 @@ import androidx.room.Room
 import com.google.gson.Gson
 import com.haliltprkk.movieapplication.BuildConfig
 import com.haliltprkk.movieapplication.data.local.DatabaseConverters
+import com.haliltprkk.movieapplication.data.local.MovieDao
 import com.haliltprkk.movieapplication.data.local.MovieDatabase
 import com.haliltprkk.movieapplication.data.services.localStorage.KeyValueStore
 import com.haliltprkk.movieapplication.data.services.localStorage.SharedPreferencesKeyValueStore
 import com.haliltprkk.movieapplication.data.utils.GsonParser
+import com.haliltprkk.movieapplication.domain.mappers.MovieMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,6 +47,15 @@ object AppModule {
     fun provideMovieDatabase(app: Application, gson: Gson): MovieDatabase {
         return Room.databaseBuilder(app, MovieDatabase::class.java, "movie_db")
             .addTypeConverter(DatabaseConverters(GsonParser(gson)))
+            .fallbackToDestructiveMigration()
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideDao(db: MovieDatabase): MovieDao = db.dao
+
+    @Provides
+    @Singleton
+    fun provideMovieMapper(): MovieMapper = MovieMapper()
 }

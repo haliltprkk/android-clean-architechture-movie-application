@@ -33,7 +33,7 @@ class HomeViewModel @Inject constructor(
                     is Resource.Loading -> setLoading(true)
                     is Resource.Success -> {
                         setLoading(false)
-                        if (result.data == null || result.data.size == 0) {
+                        if (result.data == null || result.data.isEmpty()) {
                             _state.value = HomeViewState.SuccessWithEmptyData
                         } else {
                             _state.value = HomeViewState.Success(result.data)
@@ -47,7 +47,7 @@ class HomeViewModel @Inject constructor(
     sealed class HomeViewState {
         object Init : HomeViewState()
         data class Loading(val isLoading: Boolean) : HomeViewState()
-        data class Success(val data: ArrayList<Movie>) : HomeViewState()
+        data class Success(val data: List<Movie>) : HomeViewState()
         object SuccessWithEmptyData : HomeViewState()
         data class Error(val error: UiText) : HomeViewState()
     }
