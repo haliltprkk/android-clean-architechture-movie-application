@@ -1,6 +1,9 @@
 package com.haliltprkk.movieapplication.di
 
+import android.content.Context
 import android.util.Log
+import com.chuckerteam.chucker.api.ChuckerCollector
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.haliltprkk.movieapplication.BuildConfig
 import com.haliltprkk.movieapplication.data.remote.api_services.MovieApiService
 import com.ihsanbal.logging.Level
@@ -8,7 +11,9 @@ import com.ihsanbal.logging.LoggingInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -27,20 +32,44 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(httpLoggingInterceptor: LoggingInterceptor): OkHttpClient {
-        val client = OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).addInterceptor(
+    fun provideOkHttpClientBuilder(): OkHttpClient.Builder = OkHttpClient.Builder()
+        .readTimeout(20, TimeUnit.SECONDS)
+        .connectTimeout(20, TimeUnit.SECONDS)
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(
+        httpLoggingInterceptor: LoggingInterceptor,
+        chuckerInterceptor: ChuckerInterceptor,
+        builder: OkHttpClient.Builder
+    ): OkHttpClient {
+        if (BuildConfig.DEBUG) {
+            builder.addInterceptor(httpLoggingInterceptor)
+            builder.addInterceptor(chuckerInterceptor)
+        }
+        builder.addInterceptor(
             Interceptor { chain ->
                 val original = chain.request()
                 val url = original.url.newBuilder().addQueryParameter("api_key", BuildConfig.API_KEY).build()
                 val requestBuilder = original.newBuilder().url(url)
                 chain.proceed(requestBuilder.build())
             },
-        ).build()
-        return client
+        )
+        return builder.build()
     }
 
     @Singleton
     @Provides
     fun provideHttpLoggingInterceptor(): LoggingInterceptor =
         LoggingInterceptor.Builder().setLevel(Level.BODY).log(Log.VERBOSE).build()
+
+    @Singleton
+    @Provides
+    fun provideChuckerInterceptor(@ApplicationContext appContext: Context): ChuckerInterceptor =
+        ChuckerInterceptor.Builder(appContext)
+            .collector(ChuckerCollector(appContext))
+            .maxContentLength(250000L)
+            .redactHeaders(emptySet())
+            .alwaysReadResponseBody(false)
+            .build()
 }

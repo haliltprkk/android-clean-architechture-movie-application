@@ -15,6 +15,7 @@ methodologies/technologies.
 - View Binding
 - ktlint
 - LeakCanary
+- Chucker
 
 ## Screenshots 📸
 
