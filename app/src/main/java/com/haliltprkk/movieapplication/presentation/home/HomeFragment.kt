@@ -11,13 +11,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.haliltprkk.movieapplication.R
 import com.haliltprkk.movieapplication.common.extension.addSimpleVerticalDecoration
+import com.haliltprkk.movieapplication.common.utils.Constants.Companion.ARG_ID
 import com.haliltprkk.movieapplication.common.utils.UiText
 import com.haliltprkk.movieapplication.databinding.FragmentHomeBinding
 import com.haliltprkk.movieapplication.domain.models.Movie
-import com.haliltprkk.movieapplication.presentation.movie_detail.MovieDetailActivity
 import com.haliltprkk.movieapplication.presentation.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -92,10 +94,10 @@ class HomeFragment : Fragment() {
             includeLastItem = true
         )
         adapter = MovieAdapter(object : MovieItemListener {
+
             override fun onMovieClicked(movieId: Long) {
-                startActivity(
-                    MovieDetailActivity.createSimpleIntent(requireContext(), movieId = movieId)
-                )
+                val bundle = Bundle().apply { putLong(ARG_ID, movieId) }
+                findNavController().navigate(R.id.movieDetailFragment, bundle)
             }
         })
         binding.rvMovies.adapter = adapter
@@ -104,9 +106,5 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        fun newInstance() = HomeFragment()
     }
 }

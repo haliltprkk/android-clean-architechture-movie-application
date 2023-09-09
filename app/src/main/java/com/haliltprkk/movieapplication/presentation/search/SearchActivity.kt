@@ -19,7 +19,6 @@ import com.haliltprkk.movieapplication.common.extension.addSimpleVerticalDecorat
 import com.haliltprkk.movieapplication.common.utils.UiText
 import com.haliltprkk.movieapplication.databinding.ActivitySearchBinding
 import com.haliltprkk.movieapplication.domain.models.Movie
-import com.haliltprkk.movieapplication.presentation.movie_detail.MovieDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -93,12 +92,13 @@ class SearchActivity : AppCompatActivity() {
         )
         adapter = SearchMovieAdapter(object : MovieItemListener {
             override fun onMovieClicked(movieId: Long) {
-                startActivity(
-                    MovieDetailActivity.createSimpleIntent(
-                        this@SearchActivity,
-                        movieId = movieId
-                    )
-                )
+                // TODO fix here later
+//                startActivity(
+//                    MovieDetailActivity.createSimpleIntent(
+//                        this@SearchActivity,
+//                        movieId = movieId
+//                    )
+//                )
             }
         })
         binding.rvMovies.adapter = adapter

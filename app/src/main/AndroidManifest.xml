@@ -20,9 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".presentation.movie_detail.MovieDetailActivity"
-            android:exported="true" />
         <activity android:name=".presentation.search.SearchActivity" />
     </application>
 
