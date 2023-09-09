@@ -6,6 +6,7 @@ methodologies/technologies.
 ## Tech Stack ⚙️
 
 - Hilt
+- Jetpack Navigation
 - Coroutine Flow
 - Unit Testing
 - Google Truth
