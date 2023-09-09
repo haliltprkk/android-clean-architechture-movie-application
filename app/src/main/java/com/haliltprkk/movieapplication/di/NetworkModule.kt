@@ -27,7 +27,9 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): MovieApiService {
         return Retrofit.Builder().baseUrl(BuildConfig.BASE_URL).client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create()).build().create(MovieApiService::class.java)
+            .addConverterFactory(GsonConverterFactory.create()).build().create(
+                MovieApiService::class.java
+            )
     }
 
     @Provides
@@ -50,10 +52,13 @@ object NetworkModule {
         builder.addInterceptor(
             Interceptor { chain ->
                 val original = chain.request()
-                val url = original.url.newBuilder().addQueryParameter("api_key", BuildConfig.API_KEY).build()
+                val url = original.url.newBuilder().addQueryParameter(
+                    "api_key",
+                    BuildConfig.API_KEY
+                ).build()
                 val requestBuilder = original.newBuilder().url(url)
                 chain.proceed(requestBuilder.build())
-            },
+            }
         )
         return builder.build()
     }

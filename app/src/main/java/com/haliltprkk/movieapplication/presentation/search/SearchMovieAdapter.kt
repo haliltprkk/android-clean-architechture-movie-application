@@ -18,7 +18,9 @@ class SearchMovieAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewModel {
         val binding = ListItemSearchMovieBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
+            LayoutInflater.from(parent.context),
+            parent,
+            false
         )
         return ViewModel(binding, listener)
     }

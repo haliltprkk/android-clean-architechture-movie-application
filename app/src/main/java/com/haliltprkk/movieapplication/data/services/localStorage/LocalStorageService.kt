@@ -23,7 +23,10 @@ class LocalStorageService @Inject constructor(
 
     fun removeObject(key: String) = keyValueStore.remove(key)
 
-    fun setLastUpdateTime(lastTimeFetched: Long) = keyValueStore.setLong(LAST_UPDATE_TIME, lastTimeFetched)
+    fun setLastUpdateTime(lastTimeFetched: Long) = keyValueStore.setLong(
+        LAST_UPDATE_TIME,
+        lastTimeFetched
+    )
 
     fun getLastUpdateTime(): Long? = keyValueStore.getLong(LAST_UPDATE_TIME)
 

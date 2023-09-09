@@ -32,7 +32,11 @@ class GetPopularMoviesUseCaseTest {
 
     @Before
     fun setUp() {
-        getPopularMoviesUseCase = GetPopularMoviesUseCaseImpl(movieRepository, localeStorageService, mapper)
+        getPopularMoviesUseCase = GetPopularMoviesUseCaseImpl(
+            movieRepository,
+            localeStorageService,
+            mapper
+        )
     }
 
     @Test

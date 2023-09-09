@@ -14,5 +14,8 @@ import javax.inject.Singleton
 object ServiceModule {
     @Singleton
     @Provides
-    fun provideLocalStorageService(gson: Gson, keyValueStore: KeyValueStore) = LocalStorageService(gson, keyValueStore)
+    fun provideLocalStorageService(gson: Gson, keyValueStore: KeyValueStore) = LocalStorageService(
+        gson,
+        keyValueStore
+    )
 }

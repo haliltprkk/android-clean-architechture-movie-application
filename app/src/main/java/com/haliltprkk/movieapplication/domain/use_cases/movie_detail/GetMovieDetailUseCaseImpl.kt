@@ -12,6 +12,6 @@ class GetMovieDetailUseCaseImpl @Inject constructor(
     override suspend fun getMovieById(id: Long) =
         performRequest(
             mapper = mapper::fromDtoToDomain,
-            networkCall = { repository.getMovie(id) },
+            networkCall = { repository.getMovie(id) }
         )
 }

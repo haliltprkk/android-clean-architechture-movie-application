@@ -16,7 +16,9 @@ class MovieRepositoryImpl @Inject constructor(
     private val mapper: MovieMapper
 ) :
     MovieRepository {
-    override suspend fun getPopularMovies(page: Int): PopularMovieListDto = api.getPopularMovies(page)
+    override suspend fun getPopularMovies(page: Int): PopularMovieListDto = api.getPopularMovies(
+        page
+    )
     override suspend fun getCachedPopularMovies(page: Int): List<MovieEntity> = dao.getPopularMovies()
     override suspend fun getPopularMoviesFromDatabase(page: Int): List<MovieEntity> = dao.getPopularMovies()
     override suspend fun savePopularListToCache(response: List<MovieDto>) =

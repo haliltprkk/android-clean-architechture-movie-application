@@ -19,7 +19,6 @@ import com.haliltprkk.movieapplication.common.extension.addSimpleVerticalDecorat
 import com.haliltprkk.movieapplication.common.utils.UiText
 import com.haliltprkk.movieapplication.databinding.ActivitySearchBinding
 import com.haliltprkk.movieapplication.domain.models.Movie
-import com.haliltprkk.movieapplication.presentation.movie_detail.MovieDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -87,15 +86,19 @@ class SearchActivity : AppCompatActivity() {
     private fun setUpList() {
         binding.rvMovies.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         binding.rvMovies.addSimpleVerticalDecoration(
-            16, includeFirstItem = true, includeLastItem = true
+            16,
+            includeFirstItem = true,
+            includeLastItem = true
         )
         adapter = SearchMovieAdapter(object : MovieItemListener {
             override fun onMovieClicked(movieId: Long) {
-                startActivity(
-                    MovieDetailActivity.createSimpleIntent(
-                        this@SearchActivity, movieId = movieId
-                    )
-                )
+                // TODO fix here later
+//                startActivity(
+//                    MovieDetailActivity.createSimpleIntent(
+//                        this@SearchActivity,
+//                        movieId = movieId
+//                    )
+//                )
             }
         })
         binding.rvMovies.adapter = adapter
@@ -111,6 +114,9 @@ class SearchActivity : AppCompatActivity() {
     }
 
     companion object {
-        fun createSimpleIntent(context: Context): Intent = Intent(context, SearchActivity::class.java)
+        fun createSimpleIntent(context: Context): Intent = Intent(
+            context,
+            SearchActivity::class.java
+        )
     }
 }

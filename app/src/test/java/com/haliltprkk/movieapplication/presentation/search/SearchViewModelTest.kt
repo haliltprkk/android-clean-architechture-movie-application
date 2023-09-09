@@ -51,7 +51,9 @@ class SearchViewModelTest {
         viewModel.searchMovie(query)
         delay(500)
         val currentState = viewModel.getViewState()
-        assertThat(currentState.value).isInstanceOf(SearchViewModel.SearchViewState.Success::class.java)
+        assertThat(currentState.value).isInstanceOf(
+            SearchViewModel.SearchViewState.Success::class.java
+        )
     }
 
     @Test
@@ -62,18 +64,26 @@ class SearchViewModelTest {
         viewModel.searchMovie(query)
         delay(500)
         val currentState = viewModel.getViewState()
-        assertThat(currentState.value).isInstanceOf(SearchViewModel.SearchViewState.Error::class.java)
+        assertThat(currentState.value).isInstanceOf(
+            SearchViewModel.SearchViewState.Error::class.java
+        )
     }
 
     @Test
     fun `searchMovieUseCase emits error`() = runTest {
         whenever(searchMovieUseCase.searchMovie(any())).thenAnswer {
-            flow<Resource<Any>> { emit(Resource.Error(message = UiText.DynamicString(value = errorMessage))) }
+            flow<Resource<Any>> {
+                emit(
+                    Resource.Error(message = UiText.DynamicString(value = errorMessage))
+                )
+            }
         }
         viewModel.searchMovie(query)
         delay(500)
         val currentState = viewModel.getViewState()
-        assertThat(currentState.value).isInstanceOf(SearchViewModel.SearchViewState.Error::class.java)
+        assertThat(currentState.value).isInstanceOf(
+            SearchViewModel.SearchViewState.Error::class.java
+        )
     }
 
     @Test
@@ -84,7 +94,9 @@ class SearchViewModelTest {
         viewModel.searchMovie(query)
         delay(500)
         val currentState = viewModel.getViewState()
-        assertThat(currentState.value).isInstanceOf(SearchViewModel.SearchViewState.Loading::class.java)
+        assertThat(currentState.value).isInstanceOf(
+            SearchViewModel.SearchViewState.Loading::class.java
+        )
     }
 
     @Test
@@ -101,7 +113,9 @@ class SearchViewModelTest {
     fun `verify setLoading function called with isLoading=true `() = runTest {
         viewModel.setLoading(true)
         val currentState = viewModel.getViewState()
-        assertThat(currentState.value).isInstanceOf(SearchViewModel.SearchViewState.Loading::class.java)
+        assertThat(currentState.value).isInstanceOf(
+            SearchViewModel.SearchViewState.Loading::class.java
+        )
         val loadingState = currentState.value as SearchViewModel.SearchViewState.Loading
         assertThat(loadingState.isLoading).isEqualTo(true)
     }
@@ -110,7 +124,9 @@ class SearchViewModelTest {
     fun `verify setLoading function called with isLoading=false `() = runTest {
         viewModel.setLoading(false)
         val currentState = viewModel.getViewState()
-        assertThat(currentState.value).isInstanceOf(SearchViewModel.SearchViewState.Loading::class.java)
+        assertThat(currentState.value).isInstanceOf(
+            SearchViewModel.SearchViewState.Loading::class.java
+        )
         val loadingState = currentState.value as SearchViewModel.SearchViewState.Loading
         assertThat(loadingState.isLoading).isEqualTo(false)
     }

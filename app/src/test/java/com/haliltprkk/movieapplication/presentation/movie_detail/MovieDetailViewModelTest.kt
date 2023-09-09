@@ -49,17 +49,25 @@ class MovieDetailViewModelTest {
         }
         viewModel.getMovie(movieId)
         val currentState = viewModel.getViewState()
-        Truth.assertThat(currentState.value).isInstanceOf(MovieDetailViewModel.MovieDetailViewState.Success::class.java)
+        Truth.assertThat(currentState.value).isInstanceOf(
+            MovieDetailViewModel.MovieDetailViewState.Success::class.java
+        )
     }
 
     @Test
     fun `getMovieDetailUseCase emits error`() = runTest {
         whenever(getMovieDetailUseCase.getMovieById(any())).thenAnswer {
-            flow<Resource<Any>> { emit(Resource.Error(message = UiText.DynamicString(value = errorMessage))) }
+            flow<Resource<Any>> {
+                emit(
+                    Resource.Error(message = UiText.DynamicString(value = errorMessage))
+                )
+            }
         }
         viewModel.getMovie(movieId)
         val currentState = viewModel.getViewState()
-        Truth.assertThat(currentState.value).isInstanceOf(MovieDetailViewModel.MovieDetailViewState.Error::class.java)
+        Truth.assertThat(currentState.value).isInstanceOf(
+            MovieDetailViewModel.MovieDetailViewState.Error::class.java
+        )
     }
 
     @Test
@@ -69,7 +77,9 @@ class MovieDetailViewModelTest {
         }
         viewModel.getMovie(movieId)
         val currentState = viewModel.getViewState()
-        Truth.assertThat(currentState.value).isInstanceOf(MovieDetailViewModel.MovieDetailViewState.Loading::class.java)
+        Truth.assertThat(currentState.value).isInstanceOf(
+            MovieDetailViewModel.MovieDetailViewState.Loading::class.java
+        )
     }
 
     @Test
@@ -85,7 +95,9 @@ class MovieDetailViewModelTest {
     fun `verify setLoading function called with isLoading=true `() = runTest {
         viewModel.setLoading(true)
         val currentState = viewModel.getViewState()
-        Truth.assertThat(currentState.value).isInstanceOf(MovieDetailViewModel.MovieDetailViewState.Loading::class.java)
+        Truth.assertThat(currentState.value).isInstanceOf(
+            MovieDetailViewModel.MovieDetailViewState.Loading::class.java
+        )
         val loadingState = currentState.value as MovieDetailViewModel.MovieDetailViewState.Loading
         Truth.assertThat(loadingState.isLoading).isEqualTo(true)
     }
@@ -94,7 +106,9 @@ class MovieDetailViewModelTest {
     fun `verify setLoading function called with isLoading=false `() = runTest {
         viewModel.setLoading(false)
         val currentState = viewModel.getViewState()
-        Truth.assertThat(currentState.value).isInstanceOf(MovieDetailViewModel.MovieDetailViewState.Loading::class.java)
+        Truth.assertThat(currentState.value).isInstanceOf(
+            MovieDetailViewModel.MovieDetailViewState.Loading::class.java
+        )
         val loadingState = currentState.value as MovieDetailViewModel.MovieDetailViewState.Loading
         Truth.assertThat(loadingState.isLoading).isEqualTo(false)
     }
