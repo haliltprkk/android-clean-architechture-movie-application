@@ -9,10 +9,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.haliltprkk.movieapplication.R
 import com.haliltprkk.movieapplication.common.base.BaseFragment
-import com.haliltprkk.movieapplication.common.extension.ARG_ID
 import com.haliltprkk.movieapplication.common.extension.runTimeToReadableDuration
 import com.haliltprkk.movieapplication.common.extension.toFullImageLink
 import com.haliltprkk.movieapplication.common.utils.UiText
@@ -22,12 +22,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-const val DEFAULT_MOVIE_ID = 0L
-
 @AndroidEntryPoint
 class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(FragmentMovieDetailBinding::inflate) {
     private val viewModel: MovieDetailViewModel by viewModels()
-    private val movieId: Long by lazy { arguments?.getLong(ARG_ID) ?: DEFAULT_MOVIE_ID }
+    private val args: MovieDetailFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -69,7 +67,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(FragmentMov
         Toast.LENGTH_SHORT
     ).show()
 
-    private fun init() = viewModel.getMovie(id = movieId)
+    private fun init() = viewModel.getMovie(id = args.movieId)
 
     private fun listeners() = binding.ivBack.setOnClickListener { findNavController().popBackStack() }
 }

@@ -15,9 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.haliltprkk.movieapplication.R
 import com.haliltprkk.movieapplication.common.base.BaseFragment
-import com.haliltprkk.movieapplication.common.extension.ARG_ID
 import com.haliltprkk.movieapplication.common.extension.addSimpleVerticalDecoration
 import com.haliltprkk.movieapplication.common.utils.UiText
 import com.haliltprkk.movieapplication.databinding.FragmentSearchBinding
@@ -90,8 +88,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         )
         adapter = SearchMovieAdapter(object : MovieItemListener {
             override fun onMovieClicked(movieId: Long) {
-                val bundle = Bundle().apply { putLong(ARG_ID, movieId) }
-                findNavController().navigate(R.id.movieDetailFragment, bundle)
+                val action = SearchFragmentDirections.actionSearchFragmentToMovieDetailFragment(movieId)
+                findNavController().navigate(action)
             }
         })
         binding.rvMovies.adapter = adapter
