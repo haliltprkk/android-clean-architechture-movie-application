@@ -12,6 +12,6 @@ class SearchMovieUseCaseImpl @Inject constructor(
     override suspend fun searchMovie(query: String) =
         performRequest(
             mapper = { response -> response.results.map(mapper::fromDtoToDomain) },
-            networkCall = { repository.searchMovie(query) },
+            networkCall = { repository.searchMovie(query) }
         )
 }

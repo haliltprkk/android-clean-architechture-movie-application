@@ -1,12 +1,13 @@
 package com.haliltprkk.movieapplication.presentation.home
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -14,30 +15,34 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.haliltprkk.movieapplication.common.extension.addSimpleVerticalDecoration
 import com.haliltprkk.movieapplication.common.utils.UiText
-import com.haliltprkk.movieapplication.data.services.localStorage.LocalStorageService
-import com.haliltprkk.movieapplication.databinding.ActivityHomeBinding
+import com.haliltprkk.movieapplication.databinding.FragmentHomeBinding
 import com.haliltprkk.movieapplication.domain.models.Movie
 import com.haliltprkk.movieapplication.presentation.movie_detail.MovieDetailActivity
 import com.haliltprkk.movieapplication.presentation.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class HomeActivity : AppCompatActivity() {
-    lateinit var binding: ActivityHomeBinding
+class HomeFragment : Fragment() {
+
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var adapter: MovieAdapter
     private val page = 1
 
-    @Inject
-    lateinit var localStorageService: LocalStorageService
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         listeners()
         setUpList()
         setupObservers()
@@ -45,7 +50,11 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun listeners() =
-        binding.cvSearch.setOnClickListener { startActivity(SearchActivity.createSimpleIntent(this)) }
+        binding.cvSearch.setOnClickListener {
+            startActivity(
+                SearchActivity.createSimpleIntent(requireContext())
+            )
+        }
 
     private fun setupObservers() {
         viewModel.getViewState().flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
@@ -68,22 +77,36 @@ class HomeActivity : AppCompatActivity() {
         binding.progressBar.isVisible = loading
     }
 
-    private fun handleError(error: UiText) = Toast.makeText(this, error.asString(this), Toast.LENGTH_SHORT).show()
+    private fun handleError(error: UiText) =
+        Toast.makeText(requireContext(), error.asString(requireContext()), Toast.LENGTH_SHORT).show()
 
     private fun setUpList() {
-        binding.rvMovies.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        binding.rvMovies.layoutManager = LinearLayoutManager(
+            requireContext(),
+            RecyclerView.VERTICAL,
+            false
+        )
         binding.rvMovies.addSimpleVerticalDecoration(
-            16, includeFirstItem = true, includeLastItem = true
+            16,
+            includeFirstItem = true,
+            includeLastItem = true
         )
         adapter = MovieAdapter(object : MovieItemListener {
             override fun onMovieClicked(movieId: Long) {
-                startActivity(MovieDetailActivity.createSimpleIntent(this@HomeActivity, movieId = movieId))
+                startActivity(
+                    MovieDetailActivity.createSimpleIntent(requireContext(), movieId = movieId)
+                )
             }
         })
         binding.rvMovies.adapter = adapter
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     companion object {
-        fun createSimpleIntent(context: Context): Intent = Intent(context, HomeActivity::class.java)
+        fun newInstance() = HomeFragment()
     }
 }

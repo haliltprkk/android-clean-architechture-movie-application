@@ -20,7 +20,7 @@ class MovieMapper {
             originalTitle = originalTitle,
             popularity = popularity,
             revenue = revenue,
-            status = status,
+            status = status
         )
     }
 

@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
-    private val getMovieDetailUseCase: GetMovieDetailUseCase,
+    private val getMovieDetailUseCase: GetMovieDetailUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow<MovieDetailViewState>(MovieDetailViewState.Init)
     fun getViewState(): StateFlow<MovieDetailViewState> = _state.asStateFlow()

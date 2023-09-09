@@ -36,17 +36,23 @@ class MockHelper {
             tagline = "",
             title = "",
             video = false,
-            voteAverage = 0.0,
+            voteAverage = 0.0
         )
         val movie = MovieMapper().fromDtoToDomain(movieDto)
         val movieList = arrayListOf(movie)
         val popularMovieListDto = PopularMovieListDto(
-            page = 0, results = listOf(movieDto), totalPages = 0, totalResults = 0
+            page = 0,
+            results = listOf(movieDto),
+            totalPages = 0,
+            totalResults = 0
         )
 
         fun getHttpException(): HttpException {
             return HttpException(
-                Response.error<ResponseBody>(500, errorJson.toResponseBody("plain/text".toMediaTypeOrNull()))
+                Response.error<ResponseBody>(
+                    500,
+                    errorJson.toResponseBody("plain/text".toMediaTypeOrNull())
+                )
             )
         }
     }

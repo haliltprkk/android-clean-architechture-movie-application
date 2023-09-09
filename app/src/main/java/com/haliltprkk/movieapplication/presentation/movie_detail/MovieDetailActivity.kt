@@ -64,7 +64,11 @@ class MovieDetailActivity : AppCompatActivity() {
         binding.progress.isVisible = loading
     }
 
-    private fun handleError(error: UiText) = Toast.makeText(this, error.asString(this), Toast.LENGTH_SHORT).show()
+    private fun handleError(error: UiText) = Toast.makeText(
+        this,
+        error.asString(this),
+        Toast.LENGTH_SHORT
+    ).show()
 
     private fun init() = viewModel.getMovie(id = MOVIE_ID)
 

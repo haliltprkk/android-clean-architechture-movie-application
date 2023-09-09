@@ -56,13 +56,19 @@ class HomeViewModelTest {
         }
         viewModel.getMovies(page)
         val currentState = viewModel.getViewState()
-        assertThat(currentState.value).isInstanceOf(HomeViewModel.HomeViewState.SuccessWithEmptyData::class.java)
+        assertThat(currentState.value).isInstanceOf(
+            HomeViewModel.HomeViewState.SuccessWithEmptyData::class.java
+        )
     }
 
     @Test
     fun `getPopularMoviesUseCase emits error`() = runTest {
         whenever(getPopularMoviesUseCase.getPopularMovies(any())).thenAnswer {
-            flow<Resource<Any>> { emit(Resource.Error(message = UiText.DynamicString(value = errorMessage))) }
+            flow<Resource<Any>> {
+                emit(
+                    Resource.Error(message = UiText.DynamicString(value = errorMessage))
+                )
+            }
         }
         viewModel.getMovies(page)
         val currentState = viewModel.getViewState()

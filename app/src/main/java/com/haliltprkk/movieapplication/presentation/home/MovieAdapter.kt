@@ -18,7 +18,9 @@ class MovieAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewModel {
         val binding = ListItemMovieBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
+            LayoutInflater.from(parent.context),
+            parent,
+            false
         )
         return ViewModel(binding, listener)
     }
@@ -30,7 +32,11 @@ class MovieAdapter(
         notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: ViewModel, position: Int) = with(holder) { bind(data[position]) }
+    override fun onBindViewHolder(holder: ViewModel, position: Int) = with(holder) {
+        bind(
+            data[position]
+        )
+    }
 
     override fun getItemCount(): Int = data.size
 }

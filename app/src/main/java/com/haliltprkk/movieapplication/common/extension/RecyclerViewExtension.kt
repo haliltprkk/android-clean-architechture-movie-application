@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 fun RecyclerView.addSimpleVerticalDecoration(
     spaceInDp: Int = 10,
     includeFirstItem: Boolean,
-    includeLastItem: Boolean,
+    includeLastItem: Boolean
 ) {
     this.addItemDecoration(object : RecyclerView.ItemDecoration() {
         override fun getItemOffsets(
             outRect: Rect,
             view: View,
             parent: RecyclerView,
-            state: RecyclerView.State,
+            state: RecyclerView.State
         ) {
             val itemCount = state.itemCount
             val pos = parent.getChildAdapterPosition(view)

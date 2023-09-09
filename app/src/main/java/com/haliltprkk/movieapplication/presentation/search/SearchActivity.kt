@@ -87,13 +87,16 @@ class SearchActivity : AppCompatActivity() {
     private fun setUpList() {
         binding.rvMovies.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         binding.rvMovies.addSimpleVerticalDecoration(
-            16, includeFirstItem = true, includeLastItem = true
+            16,
+            includeFirstItem = true,
+            includeLastItem = true
         )
         adapter = SearchMovieAdapter(object : MovieItemListener {
             override fun onMovieClicked(movieId: Long) {
                 startActivity(
                     MovieDetailActivity.createSimpleIntent(
-                        this@SearchActivity, movieId = movieId
+                        this@SearchActivity,
+                        movieId = movieId
                     )
                 )
             }
@@ -111,6 +114,9 @@ class SearchActivity : AppCompatActivity() {
     }
 
     companion object {
-        fun createSimpleIntent(context: Context): Intent = Intent(context, SearchActivity::class.java)
+        fun createSimpleIntent(context: Context): Intent = Intent(
+            context,
+            SearchActivity::class.java
+        )
     }
 }
