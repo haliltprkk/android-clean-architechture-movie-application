@@ -3,6 +3,7 @@ package com.haliltprkk.movieapplication.presentation.search
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.haliltprkk.movieapplication.R
+import com.haliltprkk.movieapplication.common.extension.EMPTY_STRING
 import com.haliltprkk.movieapplication.common.utils.Resource
 import com.haliltprkk.movieapplication.common.utils.UiText
 import com.haliltprkk.movieapplication.domain.models.Movie
@@ -18,31 +19,38 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+private const val MIN_QUERY_LENGTH = 2
+private const val REQUEST_DELAY = 500L
+
 @HiltViewModel
 class SearchViewModel @Inject constructor(private val searchMovieUseCase: SearchMovieUseCase) : ViewModel() {
     private val _state = MutableStateFlow<SearchViewState>(SearchViewState.Init)
     fun getViewState(): StateFlow<SearchViewState> = _state.asStateFlow()
     private var searchJob: Job? = null
+    private var lastSearchedQuery = EMPTY_STRING
 
     fun setLoading(isLoading: Boolean) {
         _state.value = SearchViewState.Loading(isLoading)
     }
 
     fun searchMovie(query: String) {
+        if (lastSearchedQuery == query && query.length < MIN_QUERY_LENGTH) return
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
-            delay(500L)
+            delay(REQUEST_DELAY)
             searchMovieUseCase.searchMovie(query).onEach {
                 when (it) {
                     is Resource.Error -> {
                         setLoading(false)
                         _state.value = SearchViewState.Error(it.message)
                     }
+
                     is Resource.Loading -> setLoading(true)
                     is Resource.Success -> {
                         setLoading(false)
                         if (!it.data.isNullOrEmpty()) {
                             _state.value = SearchViewState.Success(it.data)
+                            lastSearchedQuery = query
                         } else {
                             _state.value = SearchViewState.Error(
                                 UiText.StringResource(R.string.searchPage_noMovieText)
