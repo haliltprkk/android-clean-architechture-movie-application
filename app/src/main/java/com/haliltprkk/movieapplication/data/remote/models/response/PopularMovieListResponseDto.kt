@@ -1,8 +1,9 @@
 package com.haliltprkk.movieapplication.data.remote.models.response
+
 import com.google.gson.annotations.SerializedName
 import com.haliltprkk.movieapplication.data.remote.models.MovieDto
 
-data class PopularMovieListDto(
+data class PopularMovieListResponseDto(
     val page: Int,
     val results: List<MovieDto>,
     @SerializedName("total_pages")

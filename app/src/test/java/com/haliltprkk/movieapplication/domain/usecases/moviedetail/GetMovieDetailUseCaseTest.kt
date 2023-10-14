@@ -1,4 +1,4 @@
-package com.haliltprkk.movieapplication.domain.use_cases.movie_detail
+package com.haliltprkk.movieapplication.domain.usecases.moviedetail
 
 import com.google.common.truth.Truth.assertThat
 import com.haliltprkk.movieapplication.common.utils.Resource

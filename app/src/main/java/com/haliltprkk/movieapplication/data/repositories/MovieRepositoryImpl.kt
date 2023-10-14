@@ -2,9 +2,9 @@ package com.haliltprkk.movieapplication.data.repositories
 
 import com.haliltprkk.movieapplication.data.local.MovieDao
 import com.haliltprkk.movieapplication.data.local.entities.MovieEntity
-import com.haliltprkk.movieapplication.data.remote.api_services.MovieApiService
+import com.haliltprkk.movieapplication.data.remote.apiservices.MovieApiService
 import com.haliltprkk.movieapplication.data.remote.models.MovieDto
-import com.haliltprkk.movieapplication.data.remote.models.response.PopularMovieListDto
+import com.haliltprkk.movieapplication.data.remote.models.response.PopularMovieListResponseDto
 import com.haliltprkk.movieapplication.data.remote.models.response.SearchMovieResponseDto
 import com.haliltprkk.movieapplication.domain.mappers.MovieMapper
 import com.haliltprkk.movieapplication.domain.repositories.MovieRepository
@@ -16,7 +16,7 @@ class MovieRepositoryImpl @Inject constructor(
     private val mapper: MovieMapper
 ) :
     MovieRepository {
-    override suspend fun getPopularMovies(page: Int): PopularMovieListDto = api.getPopularMovies(
+    override suspend fun getPopularMovies(page: Int): PopularMovieListResponseDto = api.getPopularMovies(
         page
     )
     override suspend fun getCachedPopularMovies(page: Int): List<MovieEntity> = dao.getPopularMovies()

@@ -1,15 +1,15 @@
 package com.haliltprkk.movieapplication.utils
 
 import com.haliltprkk.movieapplication.data.remote.models.MovieDto
-import com.haliltprkk.movieapplication.data.remote.models.response.PopularMovieListDto
+import com.haliltprkk.movieapplication.data.remote.models.response.PopularMovieListResponseDto
 import com.haliltprkk.movieapplication.data.remote.models.response.SearchMovieResponseDto
 import com.haliltprkk.movieapplication.domain.mappers.MovieMapper
-import java.io.IOException
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody
 import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.HttpException
 import retrofit2.Response
+import java.io.IOException
 
 class MockHelper {
     companion object {
@@ -40,7 +40,7 @@ class MockHelper {
         )
         val movie = MovieMapper().fromDtoToDomain(movieDto)
         val movieList = arrayListOf(movie)
-        val popularMovieListDto = PopularMovieListDto(
+        val popularMovieListDto = PopularMovieListResponseDto(
             page = 0,
             results = listOf(movieDto),
             totalPages = 0,

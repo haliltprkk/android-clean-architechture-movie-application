@@ -4,7 +4,7 @@ import com.google.common.truth.Truth.assertThat
 import com.haliltprkk.movieapplication.common.utils.Resource
 import com.haliltprkk.movieapplication.common.utils.UiText
 import com.haliltprkk.movieapplication.domain.models.Movie
-import com.haliltprkk.movieapplication.domain.use_cases.search.SearchMovieUseCase
+import com.haliltprkk.movieapplication.domain.usecases.search.SearchMovieUseCase
 import com.haliltprkk.movieapplication.utils.MockHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

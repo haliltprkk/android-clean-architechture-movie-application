@@ -1,4 +1,4 @@
-package com.haliltprkk.movieapplication.presentation.movie_detail
+package com.haliltprkk.movieapplication.presentation.moviedetail
 
 import android.os.Bundle
 import android.view.LayoutInflater
