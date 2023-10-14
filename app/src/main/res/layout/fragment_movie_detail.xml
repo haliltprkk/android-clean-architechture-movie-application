@@ -55,14 +55,11 @@
                 android:id="@+id/cvGenre"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 app:cardBackgroundColor="@color/steel_grey"
                 app:cardCornerRadius="12dp"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintBottom_toTopOf="@+id/cvDuration"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@id/cvMovieImage"
                 app:layout_constraintTop_toTopOf="@+id/cvMovieImage"
                 app:layout_constraintVertical_chainStyle="spread_inside"
                 app:strokeColor="@color/tuna"
@@ -72,7 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="12dp"
-                    android:paddingVertical="16dp">
+                    android:paddingVertical="12dp">
 
                     <ImageView
                         android:id="@+id/imageView"
@@ -88,7 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="8dp"
                         android:fontFamily="@font/texta_regular"
                         android:text="@string/movieDetailPage_genre"
                         android:textColor="@color/french_grey"
@@ -102,11 +99,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="3dp"
+                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/texta_bold"
                         android:text="@string/movieDetailPage_comedy"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_14"
+                        android:textSize="@dimen/text_12"
                         app:layout_constraintEnd_toEndOf="@+id/tvGenreTitle"
                         app:layout_constraintStart_toStartOf="@+id/tvGenreTitle"
                         app:layout_constraintTop_toBottomOf="@+id/tvGenreTitle" />
@@ -136,7 +133,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="12dp"
-                    android:paddingVertical="16dp">
+                    android:paddingVertical="12dp">
 
                     <ImageView
                         android:id="@+id/ivDuration"
@@ -152,11 +149,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="8dp"
                         android:fontFamily="@font/texta_regular"
                         android:text="@string/movieDetailPage_duration"
                         android:textColor="@color/french_grey"
-                        android:textSize="@dimen/text_14"
+                        android:textSize="@dimen/text_12"
                         app:layout_constraintEnd_toEndOf="@+id/ivDuration"
                         app:layout_constraintStart_toStartOf="@+id/ivDuration"
                         app:layout_constraintTop_toBottomOf="@+id/ivDuration" />
@@ -166,10 +163,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="3dp"
+                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/texta_bold"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_14"
+                        android:textSize="@dimen/text_12"
                         app:layout_constraintEnd_toEndOf="@+id/tvDurationTitle"
                         app:layout_constraintStart_toStartOf="@+id/tvDurationTitle"
                         app:layout_constraintTop_toBottomOf="@+id/tvDurationTitle"
@@ -200,7 +197,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="12dp"
-                    android:paddingVertical="16dp">
+                    android:paddingVertical="12dp">
 
                     <ImageView
                         android:id="@+id/ivRating"
@@ -216,11 +213,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="8dp"
                         android:fontFamily="@font/texta_regular"
                         android:text="@string/movieDetailPage_rating"
                         android:textColor="@color/french_grey"
-                        android:textSize="@dimen/text_14"
+                        android:textSize="@dimen/text_12"
                         app:layout_constraintEnd_toEndOf="@+id/ivRating"
                         app:layout_constraintStart_toStartOf="@+id/ivRating"
                         app:layout_constraintTop_toBottomOf="@+id/ivRating" />
@@ -230,10 +227,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="3dp"
+                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/texta_bold"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_14"
+                        android:textSize="@dimen/text_12"
                         app:layout_constraintEnd_toEndOf="@+id/tvRatingTitle"
                         app:layout_constraintStart_toStartOf="@+id/tvRatingTitle"
                         app:layout_constraintTop_toBottomOf="@+id/tvRatingTitle"
@@ -247,17 +244,20 @@
                 android:id="@+id/cvMovieImage"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginEnd="20dp"
                 app:cardBackgroundColor="@color/bombay"
                 app:cardCornerRadius="30dp"
                 app:layout_constraintBottom_toTopOf="@id/guidelineCenter"
                 app:layout_constraintDimensionRatio="2:3"
+                app:layout_constraintEnd_toStartOf="@+id/cvGenre"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/ivMovie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
                     tools:src="@drawable/sample_movie" />
 
             </androidx.cardview.widget.CardView>
