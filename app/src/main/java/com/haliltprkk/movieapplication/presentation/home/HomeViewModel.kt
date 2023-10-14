@@ -27,6 +27,8 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getMovies(page: Int) {
+        if (_state.value is HomeViewState.Success) return
+
         viewModelScope.launch {
             getMoviesUseCase.getPopularMovies(page).onEach { result ->
                 when (result) {
@@ -34,6 +36,7 @@ class HomeViewModel @Inject constructor(
                         setLoading(false)
                         _state.value = HomeViewState.Error(result.message)
                     }
+
                     is Resource.Loading -> setLoading(true)
                     is Resource.Success -> {
                         setLoading(false)
