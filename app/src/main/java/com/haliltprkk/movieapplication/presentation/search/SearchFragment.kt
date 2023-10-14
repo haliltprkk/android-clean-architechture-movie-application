@@ -1,38 +1,50 @@
 package com.haliltprkk.movieapplication.presentation.search
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.haliltprkk.movieapplication.R
 import com.haliltprkk.movieapplication.common.extension.addSimpleVerticalDecoration
+import com.haliltprkk.movieapplication.common.utils.Constants
 import com.haliltprkk.movieapplication.common.utils.UiText
-import com.haliltprkk.movieapplication.databinding.ActivitySearchBinding
+import com.haliltprkk.movieapplication.databinding.FragmentSearchBinding
 import com.haliltprkk.movieapplication.domain.models.Movie
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class SearchActivity : AppCompatActivity() {
-    lateinit var binding: ActivitySearchBinding
+class SearchFragment : Fragment() {
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding!!
     private val viewModel: SearchViewModel by viewModels()
     private lateinit var adapter: SearchMovieAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivitySearchBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.etSearch.requestFocus()
         setUpList()
         listeners()
@@ -65,11 +77,11 @@ class SearchActivity : AppCompatActivity() {
     private fun handleError(error: UiText) {
         binding.viewError.tvError.visibility = View.VISIBLE
         adapter.setItems(arrayListOf())
-        binding.viewError.tvError.text = error.asString(this)
+        binding.viewError.tvError.text = error.asString(requireContext())
     }
 
     private fun listeners() {
-        binding.ivBack.setOnClickListener { finish() }
+        binding.ivBack.setOnClickListener { findNavController().popBackStack() }
         binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 hideSoftKeyboard()
@@ -77,14 +89,12 @@ class SearchActivity : AppCompatActivity() {
             true
         }
         binding.etSearch.addTextChangedListener { text ->
-            if (text != null && text.length > 1) {
-                viewModel.searchMovie(text.toString())
-            }
+            text?.toString()?.let { viewModel.searchMovie(it) }
         }
     }
 
     private fun setUpList() {
-        binding.rvMovies.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        binding.rvMovies.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.rvMovies.addSimpleVerticalDecoration(
             16,
             includeFirstItem = true,
@@ -92,31 +102,23 @@ class SearchActivity : AppCompatActivity() {
         )
         adapter = SearchMovieAdapter(object : MovieItemListener {
             override fun onMovieClicked(movieId: Long) {
-                // TODO fix here later
-//                startActivity(
-//                    MovieDetailActivity.createSimpleIntent(
-//                        this@SearchActivity,
-//                        movieId = movieId
-//                    )
-//                )
+                val bundle = Bundle().apply { putLong(Constants.ARG_ID, movieId) }
+                findNavController().navigate(R.id.movieDetailFragment, bundle)
             }
         })
         binding.rvMovies.adapter = adapter
     }
 
     private fun hideSoftKeyboard() {
-        val inputMethodManager: InputMethodManager = getSystemService(
-            INPUT_METHOD_SERVICE
-        ) as InputMethodManager
+        val inputMethodManager = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         if (inputMethodManager.isAcceptingText) {
-            inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+            inputMethodManager.hideSoftInputFromWindow(requireActivity().currentFocus?.windowToken, 0)
         }
     }
 
-    companion object {
-        fun createSimpleIntent(context: Context): Intent = Intent(
-            context,
-            SearchActivity::class.java
-        )
+    override fun onDestroyView() {
+        binding.rvMovies.adapter = null
+        super.onDestroyView()
+        _binding = null
     }
 }

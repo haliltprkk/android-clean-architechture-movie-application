@@ -20,7 +20,6 @@ import com.haliltprkk.movieapplication.common.utils.Constants.Companion.ARG_ID
 import com.haliltprkk.movieapplication.common.utils.UiText
 import com.haliltprkk.movieapplication.databinding.FragmentHomeBinding
 import com.haliltprkk.movieapplication.domain.models.Movie
-import com.haliltprkk.movieapplication.presentation.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -53,9 +52,7 @@ class HomeFragment : Fragment() {
 
     private fun listeners() =
         binding.cvSearch.setOnClickListener {
-            startActivity(
-                SearchActivity.createSimpleIntent(requireContext())
-            )
+            findNavController().navigate(R.id.searchFragment)
         }
 
     private fun setupObservers() {
