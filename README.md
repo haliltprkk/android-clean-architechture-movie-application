@@ -14,7 +14,8 @@ methodologies/technologies.
 - Retrofit 2 / Okhttp3
 - Room
 - View Binding
-- ktlint
+- Ktlint
+- Git hooks (pre-commit)
 - LeakCanary
 - Chucker
 
