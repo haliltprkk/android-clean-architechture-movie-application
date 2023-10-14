@@ -5,7 +5,7 @@ import android.util.Log
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.haliltprkk.movieapplication.BuildConfig
-import com.haliltprkk.movieapplication.data.remote.api_services.MovieApiService
+import com.haliltprkk.movieapplication.data.remote.apiservices.MovieApiService
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
 import dagger.Module
@@ -13,12 +13,12 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)

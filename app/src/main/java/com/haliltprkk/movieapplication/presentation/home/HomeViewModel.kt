@@ -5,11 +5,15 @@ import androidx.lifecycle.viewModelScope
 import com.haliltprkk.movieapplication.common.utils.Resource
 import com.haliltprkk.movieapplication.common.utils.UiText
 import com.haliltprkk.movieapplication.domain.models.Movie
-import com.haliltprkk.movieapplication.domain.use_cases.home.GetPopularMoviesUseCase
+import com.haliltprkk.movieapplication.domain.usecases.home.GetPopularMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(

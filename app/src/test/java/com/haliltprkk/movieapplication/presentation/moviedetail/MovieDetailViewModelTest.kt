@@ -1,9 +1,9 @@
-package com.haliltprkk.movieapplication.presentation.movie_detail
+package com.haliltprkk.movieapplication.presentation.moviedetail
 
 import com.google.common.truth.Truth
 import com.haliltprkk.movieapplication.common.utils.Resource
 import com.haliltprkk.movieapplication.common.utils.UiText
-import com.haliltprkk.movieapplication.domain.use_cases.movie_detail.GetMovieDetailUseCase
+import com.haliltprkk.movieapplication.domain.usecases.moviedetail.GetMovieDetailUseCase
 import com.haliltprkk.movieapplication.utils.MockHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -13,7 +13,6 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

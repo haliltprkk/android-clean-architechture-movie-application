@@ -1,4 +1,4 @@
-package com.haliltprkk.movieapplication.domain.use_cases.search
+package com.haliltprkk.movieapplication.domain.usecases.search
 
 import com.haliltprkk.movieapplication.common.utils.Resource
 import com.haliltprkk.movieapplication.domain.models.Movie

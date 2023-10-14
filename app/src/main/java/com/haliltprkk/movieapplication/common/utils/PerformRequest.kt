@@ -2,10 +2,10 @@ package com.haliltprkk.movieapplication.common.utils
 
 import com.haliltprkk.movieapplication.R
 import com.haliltprkk.movieapplication.common.extension.handleError
-import java.io.IOException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
+import java.io.IOException
 
 fun <T, K> performRequest(mapper: (response: T) -> K, networkCall: suspend () -> T): Flow<Resource<K>> = flow {
     try {

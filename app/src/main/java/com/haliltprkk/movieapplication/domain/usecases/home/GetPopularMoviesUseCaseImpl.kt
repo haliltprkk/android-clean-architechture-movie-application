@@ -1,4 +1,4 @@
-package com.haliltprkk.movieapplication.domain.use_cases.home
+package com.haliltprkk.movieapplication.domain.usecases.home
 
 import com.haliltprkk.movieapplication.R
 import com.haliltprkk.movieapplication.common.extension.handleError
@@ -9,12 +9,12 @@ import com.haliltprkk.movieapplication.data.services.localStorage.LocalStorageSe
 import com.haliltprkk.movieapplication.domain.mappers.MovieMapper
 import com.haliltprkk.movieapplication.domain.models.Movie
 import com.haliltprkk.movieapplication.domain.repositories.MovieRepository
-import java.io.IOException
-import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
+import java.io.IOException
+import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 class GetPopularMoviesUseCaseImpl @Inject constructor(
     private val repository: MovieRepository,

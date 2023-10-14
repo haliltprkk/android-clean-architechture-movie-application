@@ -1,11 +1,11 @@
 package com.haliltprkk.movieapplication.di
 
-import com.haliltprkk.movieapplication.domain.use_cases.home.GetPopularMoviesUseCase
-import com.haliltprkk.movieapplication.domain.use_cases.home.GetPopularMoviesUseCaseImpl
-import com.haliltprkk.movieapplication.domain.use_cases.movie_detail.GetMovieDetailUseCase
-import com.haliltprkk.movieapplication.domain.use_cases.movie_detail.GetMovieDetailUseCaseImpl
-import com.haliltprkk.movieapplication.domain.use_cases.search.SearchMovieUseCase
-import com.haliltprkk.movieapplication.domain.use_cases.search.SearchMovieUseCaseImpl
+import com.haliltprkk.movieapplication.domain.usecases.home.GetPopularMoviesUseCase
+import com.haliltprkk.movieapplication.domain.usecases.home.GetPopularMoviesUseCaseImpl
+import com.haliltprkk.movieapplication.domain.usecases.moviedetail.GetMovieDetailUseCase
+import com.haliltprkk.movieapplication.domain.usecases.moviedetail.GetMovieDetailUseCaseImpl
+import com.haliltprkk.movieapplication.domain.usecases.search.SearchMovieUseCase
+import com.haliltprkk.movieapplication.domain.usecases.search.SearchMovieUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
