@@ -6,7 +6,7 @@ methodologies/technologies.
 ## Tech Stack ⚙️
 
 - Hilt
-- Jetpack Navigation
+- Jetpack Navigation (with Safe Args)
 - Coroutine Flow
 - Unit Testing
 - Google Truth
@@ -15,7 +15,7 @@ methodologies/technologies.
 - Room
 - View Binding
 - Ktlint
-- Git hooks (pre-commit)
+- Git Hooks (pre-commit)
 - LeakCanary
 - Chucker
 
