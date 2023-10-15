@@ -1,5 +1,6 @@
 package com.haliltprkk.movieapplication.utils
 
+import com.haliltprkk.movieapplication.common.extension.EMPTY_STRING
 import com.haliltprkk.movieapplication.data.remote.models.MovieDto
 import com.haliltprkk.movieapplication.data.remote.models.response.PopularMovieListResponseDto
 import com.haliltprkk.movieapplication.data.remote.models.response.SearchMovieResponseDto
@@ -18,23 +19,23 @@ class MockHelper {
         val ioException = IOException()
         val movieDto = MovieDto(
             adult = false,
-            backdropPath = "",
+            backdropPath = EMPTY_STRING,
             budget = 0,
             genres = listOf(),
-            homepage = "",
+            homepage = EMPTY_STRING,
             id = 0,
-            imdbId = "",
-            originalLanguage = "",
-            originalTitle = "",
-            overview = "",
+            imdbId = EMPTY_STRING,
+            originalLanguage = EMPTY_STRING,
+            originalTitle = EMPTY_STRING,
+            overview = EMPTY_STRING,
             popularity = 0.0,
-            posterPath = "",
-            releaseDate = "",
+            posterPath = EMPTY_STRING,
+            releaseDate = EMPTY_STRING,
             revenue = 0,
             runtime = 0,
-            status = "",
-            tagline = "",
-            title = "",
+            status = EMPTY_STRING,
+            tagline = EMPTY_STRING,
+            title = EMPTY_STRING,
             video = false,
             voteAverage = 0.0
         )

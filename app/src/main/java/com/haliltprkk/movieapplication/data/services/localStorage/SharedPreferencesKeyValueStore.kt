@@ -1,6 +1,7 @@
 package com.haliltprkk.movieapplication.data.services.localStorage
 
 import android.content.SharedPreferences
+import com.haliltprkk.movieapplication.common.extension.EMPTY_STRING
 import javax.inject.Inject
 
 class SharedPreferencesKeyValueStore @Inject constructor(
@@ -65,7 +66,7 @@ class SharedPreferencesKeyValueStore @Inject constructor(
 
     override fun getString(key: String): String? {
         return when (containsKey(key)) {
-            true -> preferences.getString(key, "")
+            true -> preferences.getString(key, EMPTY_STRING)
             false -> null
         }
     }

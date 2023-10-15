@@ -40,7 +40,7 @@ class HomeViewModel @Inject constructor(
                     is Resource.Loading -> setLoading(true)
                     is Resource.Success -> {
                         setLoading(false)
-                        if (result.data == null || result.data.isEmpty()) {
+                        if (result.data.isNullOrEmpty()) {
                             _state.value = HomeViewState.SuccessWithEmptyData
                         } else {
                             _state.value = HomeViewState.Success(result.data)
