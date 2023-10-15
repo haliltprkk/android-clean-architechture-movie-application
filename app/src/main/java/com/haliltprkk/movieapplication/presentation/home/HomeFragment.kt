@@ -1,12 +1,9 @@
 package com.haliltprkk.movieapplication.presentation.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
@@ -15,8 +12,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.haliltprkk.movieapplication.R
+import com.haliltprkk.movieapplication.common.base.BaseFragment
+import com.haliltprkk.movieapplication.common.extension.ARG_ID
 import com.haliltprkk.movieapplication.common.extension.addSimpleVerticalDecoration
-import com.haliltprkk.movieapplication.common.utils.Constants.Companion.ARG_ID
 import com.haliltprkk.movieapplication.common.utils.UiText
 import com.haliltprkk.movieapplication.databinding.FragmentHomeBinding
 import com.haliltprkk.movieapplication.domain.models.Movie
@@ -25,22 +23,11 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var adapter: MovieAdapter
     private val page = 1
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -103,6 +90,5 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         binding.rvMovies.adapter = null
         super.onDestroyView()
-        _binding = null
     }
 }

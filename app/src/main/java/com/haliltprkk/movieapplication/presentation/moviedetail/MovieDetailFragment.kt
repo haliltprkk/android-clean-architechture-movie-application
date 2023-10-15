@@ -1,12 +1,9 @@
 package com.haliltprkk.movieapplication.presentation.moviedetail
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
@@ -14,9 +11,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.haliltprkk.movieapplication.R
+import com.haliltprkk.movieapplication.common.base.BaseFragment
+import com.haliltprkk.movieapplication.common.extension.ARG_ID
 import com.haliltprkk.movieapplication.common.extension.runTimeToReadableDuration
 import com.haliltprkk.movieapplication.common.extension.toFullImageLink
-import com.haliltprkk.movieapplication.common.utils.Constants.Companion.ARG_ID
 import com.haliltprkk.movieapplication.common.utils.UiText
 import com.haliltprkk.movieapplication.databinding.FragmentMovieDetailBinding
 import com.haliltprkk.movieapplication.domain.models.Movie
@@ -27,21 +25,9 @@ import kotlinx.coroutines.flow.onEach
 const val DEFAULT_MOVIE_ID = 0L
 
 @AndroidEntryPoint
-class MovieDetailFragment : Fragment() {
+class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(FragmentMovieDetailBinding::inflate) {
     private val viewModel: MovieDetailViewModel by viewModels()
-    private var _binding: FragmentMovieDetailBinding? = null
-    private val binding get() = _binding!!
-
     private val movieId: Long by lazy { arguments?.getLong(ARG_ID) ?: DEFAULT_MOVIE_ID }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -86,9 +72,4 @@ class MovieDetailFragment : Fragment() {
     private fun init() = viewModel.getMovie(id = movieId)
 
     private fun listeners() = binding.ivBack.setOnClickListener { findNavController().popBackStack() }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
