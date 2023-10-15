@@ -9,20 +9,16 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.haliltprkk.movieapplication.common.base.BaseFragment
 import com.haliltprkk.movieapplication.common.extension.addSimpleVerticalDecoration
+import com.haliltprkk.movieapplication.common.extension.observeInLifecycle
 import com.haliltprkk.movieapplication.common.utils.UiText
 import com.haliltprkk.movieapplication.databinding.FragmentSearchBinding
 import com.haliltprkk.movieapplication.domain.models.Movie
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
@@ -38,8 +34,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun setupObservers() {
-        viewModel.getViewState().flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-            .onEach { state -> handleStateChange(state) }.launchIn(lifecycleScope)
+        viewModel.getViewState().observeInLifecycle(lifecycle, ::handleStateChange)
     }
 
     private fun handleStateChange(state: SearchViewModel.SearchViewState) {
