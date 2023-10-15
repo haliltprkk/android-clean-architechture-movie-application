@@ -7,7 +7,6 @@
     android:fontFamily="@font/texta_regular"
     android:gravity="center"
     android:lineSpacingExtra="6dp"
-    android:visibility="gone"
     android:textColor="@color/french_grey"
     android:textSize="@dimen/text_14"
     tools:text="A mysterious aircraft, in the form of a giant magnet, steals a highly potent mutagen known as PX-41 " />

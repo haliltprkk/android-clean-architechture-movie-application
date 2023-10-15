@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -66,7 +67,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun handleSuccess(data: List<Movie>) {
-        binding.viewError.tvError.visibility = View.GONE
+        binding.viewStubError.visibility = View.GONE
         adapter.setItems(data)
     }
 
@@ -75,9 +76,9 @@ class SearchFragment : Fragment() {
     }
 
     private fun handleError(error: UiText) {
-        binding.viewError.tvError.visibility = View.VISIBLE
         adapter.setItems(arrayListOf())
-        binding.viewError.tvError.text = error.asString(requireContext())
+        val viewStubInflated = binding.viewStubError.inflate() as TextView
+        viewStubInflated.text = error.asString(requireContext())
     }
 
     private fun listeners() {

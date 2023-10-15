@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/steel_grey"
-    tools:context=".presentation.search.SearchActivity">
+    tools:context=".presentation.search.SearchFragment">
 
     <ImageView
         android:id="@+id/ivBack"
@@ -129,16 +129,15 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="@dimen/vertical_offset" />
 
-    <include
-        android:id="@+id/viewError"
-        layout="@layout/view_error"
+    <ViewStub
+        android:id="@+id/viewStubError"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout="@layout/view_error"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@+id/cvSearch"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintTop_toBottomOf="@+id/cvSearch" />
 
     <ProgressBar
         android:id="@+id/progressBar"
