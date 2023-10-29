@@ -4,6 +4,7 @@ import com.haliltprkk.movieapplication.data.local.MovieDao
 import com.haliltprkk.movieapplication.data.local.entities.MovieEntity
 import com.haliltprkk.movieapplication.data.remote.apiservices.MovieApiService
 import com.haliltprkk.movieapplication.data.remote.models.MovieDto
+import com.haliltprkk.movieapplication.data.remote.models.response.MovieCreditsResponseDto
 import com.haliltprkk.movieapplication.data.remote.models.response.PopularMovieListResponseDto
 import com.haliltprkk.movieapplication.data.remote.models.response.SearchMovieResponseDto
 import com.haliltprkk.movieapplication.domain.mappers.MovieMapper
@@ -25,4 +26,5 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun deletePopularMoviesFromDatabase() = dao.deleteAllMovies()
     override suspend fun getMovie(id: Long): MovieDto = api.getMovie(id)
     override suspend fun searchMovie(query: String): SearchMovieResponseDto = api.searchMovie(query)
+    override suspend fun getMovieCredits(id: Long): MovieCreditsResponseDto = api.getMovieCredits(id)
 }
