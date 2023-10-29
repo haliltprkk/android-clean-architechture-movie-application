@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.haliltprkk.movieapplication.R
-import com.haliltprkk.movieapplication.common.base.BaseFragment
+import com.haliltprkk.movieapplication.common.base.ViewBindingFragment
 import com.haliltprkk.movieapplication.common.extension.observeInLifecycle
 import com.haliltprkk.movieapplication.common.extension.runTimeToReadableDuration
 import com.haliltprkk.movieapplication.common.extension.toFullImageLink
@@ -19,7 +19,7 @@ import com.haliltprkk.movieapplication.domain.models.Movie
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(FragmentMovieDetailBinding::inflate) {
+class MovieDetailFragment : ViewBindingFragment<FragmentMovieDetailBinding>(FragmentMovieDetailBinding::inflate) {
     private val viewModel: MovieDetailViewModel by viewModels()
     private val args: MovieDetailFragmentArgs by navArgs()
 
