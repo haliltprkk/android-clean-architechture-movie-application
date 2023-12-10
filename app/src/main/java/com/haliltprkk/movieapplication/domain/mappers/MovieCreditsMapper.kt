@@ -1,5 +1,6 @@
 package com.haliltprkk.movieapplication.domain.mappers
 
+import com.haliltprkk.movieapplication.common.extension.EMPTY_STRING
 import com.haliltprkk.movieapplication.data.remote.models.response.MovieCreditsResponseDto
 import com.haliltprkk.movieapplication.domain.models.Cast
 
@@ -8,7 +9,8 @@ class MovieCreditsMapper {
         return creditsResponseDto.cast.map {
             Cast(
                 character = it.character,
-                order = it.order
+                originalName = it.originalName,
+                profilePath = it.profilePath ?: EMPTY_STRING
             )
         }
     }

@@ -4,12 +4,14 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.haliltprkk.movieapplication.common.extension.toFullImageLink
 import com.haliltprkk.movieapplication.databinding.ListItemCastBinding
-import com.haliltprkk.movieapplication.domain.models.Movie
+import com.haliltprkk.movieapplication.domain.models.Cast
 
 class CastAdapter : RecyclerView.Adapter<ViewModel>() {
 
-    private val data = ArrayList<Movie>()
+    private val data = ArrayList<Cast>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewModel {
         val binding = ListItemCastBinding.inflate(
@@ -21,9 +23,9 @@ class CastAdapter : RecyclerView.Adapter<ViewModel>() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setItems(items: List<Movie>) {
+    fun setItems(castList: List<Cast>) {
         this.data.clear()
-        this.data.addAll(items)
+        this.data.addAll(castList)
         notifyDataSetChanged()
     }
 
@@ -38,9 +40,9 @@ class ViewModel(
     private val binding: ListItemCastBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    private lateinit var movie: Movie
-
-    fun bind(item: Movie) {
-        this.movie = item
+    fun bind(item: Cast) {
+        binding.tvCharacterName.text = item.character
+        binding.tvActorName.text = item.originalName
+        Glide.with(itemView.context).load(item.profilePath.toFullImageLink()).into(binding.ivActor)
     }
 }

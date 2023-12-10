@@ -2,5 +2,6 @@ package com.haliltprkk.movieapplication.domain.models
 
 data class Cast(
     val character: String,
-    val order: Int
+    val originalName: String,
+    val profilePath: String
 )

@@ -3,6 +3,7 @@ package com.haliltprkk.movieapplication.presentation.moviedetail
 import com.google.common.truth.Truth
 import com.haliltprkk.movieapplication.common.utils.Resource
 import com.haliltprkk.movieapplication.common.utils.UiText
+import com.haliltprkk.movieapplication.domain.usecases.moviedetail.GetMovieCastsUseCase
 import com.haliltprkk.movieapplication.domain.usecases.moviedetail.GetMovieDetailUseCase
 import com.haliltprkk.movieapplication.utils.MockHelper
 import kotlinx.coroutines.Dispatchers
@@ -33,12 +34,18 @@ class MovieDetailViewModelTest {
     @Mock
     private lateinit var getMovieDetailUseCase: GetMovieDetailUseCase
 
+    @Mock
+    private lateinit var getMovieCastsUseCase: GetMovieCastsUseCase
+
     private lateinit var viewModel: MovieDetailViewModel
 
     @Before
     fun setUp() {
         Dispatchers.setMain(UnconfinedTestDispatcher())
-        viewModel = MovieDetailViewModel(getMovieDetailUseCase)
+        viewModel = MovieDetailViewModel(
+            getMovieDetailUseCase = getMovieDetailUseCase,
+            getMovieCastsUseCase = getMovieCastsUseCase
+        )
     }
 
     @Test
@@ -46,7 +53,7 @@ class MovieDetailViewModelTest {
         whenever(getMovieDetailUseCase.getMovieById(any())).thenAnswer {
             flow { emit(Resource.Success(data = MockHelper.movie)) }
         }
-        viewModel.getMovie(movieId)
+        viewModel.getMovieDetails(movieId)
         val currentState = viewModel.getViewState()
         Truth.assertThat(currentState.value).isInstanceOf(
             MovieDetailViewModel.MovieDetailViewState.Success::class.java
@@ -62,7 +69,7 @@ class MovieDetailViewModelTest {
                 )
             }
         }
-        viewModel.getMovie(movieId)
+        viewModel.getMovieDetails(movieId)
         val currentState = viewModel.getViewState()
         Truth.assertThat(currentState.value).isInstanceOf(
             MovieDetailViewModel.MovieDetailViewState.Error::class.java
@@ -74,7 +81,7 @@ class MovieDetailViewModelTest {
         whenever(getMovieDetailUseCase.getMovieById(any())).thenAnswer {
             flow<Resource<Any>> { emit(Resource.Loading()) }
         }
-        viewModel.getMovie(movieId)
+        viewModel.getMovieDetails(movieId)
         val currentState = viewModel.getViewState()
         Truth.assertThat(currentState.value).isInstanceOf(
             MovieDetailViewModel.MovieDetailViewState.Loading::class.java
@@ -86,30 +93,8 @@ class MovieDetailViewModelTest {
         whenever(getMovieDetailUseCase.getMovieById(any())).thenAnswer {
             flow<Resource<Any>> { emit(Resource.Loading()) }
         }
-        viewModel.getMovie(movieId)
+        viewModel.getMovieDetails(movieId)
         verify(getMovieDetailUseCase).getMovieById(eq(movieId))
-    }
-
-    @Test
-    fun `verify setLoading function called with isLoading=true `() = runTest {
-        viewModel.setLoading(true)
-        val currentState = viewModel.getViewState()
-        Truth.assertThat(currentState.value).isInstanceOf(
-            MovieDetailViewModel.MovieDetailViewState.Loading::class.java
-        )
-        val loadingState = currentState.value as MovieDetailViewModel.MovieDetailViewState.Loading
-        Truth.assertThat(loadingState.isLoading).isEqualTo(true)
-    }
-
-    @Test
-    fun `verify setLoading function called with isLoading=false `() = runTest {
-        viewModel.setLoading(false)
-        val currentState = viewModel.getViewState()
-        Truth.assertThat(currentState.value).isInstanceOf(
-            MovieDetailViewModel.MovieDetailViewState.Loading::class.java
-        )
-        val loadingState = currentState.value as MovieDetailViewModel.MovieDetailViewState.Loading
-        Truth.assertThat(loadingState.isLoading).isEqualTo(false)
     }
 
     @After
