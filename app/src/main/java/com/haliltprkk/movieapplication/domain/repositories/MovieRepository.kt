@@ -2,6 +2,7 @@ package com.haliltprkk.movieapplication.domain.repositories
 
 import com.haliltprkk.movieapplication.data.local.entities.MovieEntity
 import com.haliltprkk.movieapplication.data.remote.models.MovieDto
+import com.haliltprkk.movieapplication.data.remote.models.response.MovieCreditsResponseDto
 import com.haliltprkk.movieapplication.data.remote.models.response.PopularMovieListResponseDto
 import com.haliltprkk.movieapplication.data.remote.models.response.SearchMovieResponseDto
 
@@ -13,4 +14,5 @@ interface MovieRepository {
     suspend fun getPopularMoviesFromDatabase(page: Int): List<MovieEntity>
     suspend fun savePopularListToCache(response: List<MovieDto>)
     suspend fun deletePopularMoviesFromDatabase()
+    suspend fun getMovieCredits(id: Long): MovieCreditsResponseDto
 }

@@ -2,6 +2,8 @@ package com.haliltprkk.movieapplication.di
 
 import com.haliltprkk.movieapplication.domain.usecases.home.GetPopularMoviesUseCase
 import com.haliltprkk.movieapplication.domain.usecases.home.GetPopularMoviesUseCaseImpl
+import com.haliltprkk.movieapplication.domain.usecases.moviedetail.GetMovieCastsUseCase
+import com.haliltprkk.movieapplication.domain.usecases.moviedetail.GetMovieCastsUseCaseImpl
 import com.haliltprkk.movieapplication.domain.usecases.moviedetail.GetMovieDetailUseCase
 import com.haliltprkk.movieapplication.domain.usecases.moviedetail.GetMovieDetailUseCaseImpl
 import com.haliltprkk.movieapplication.domain.usecases.search.SearchMovieUseCase
@@ -14,7 +16,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class UserCaseModule {
+abstract class UseCaseModule {
     @Binds
     @Singleton
     abstract fun bindGetPopularMoviesUseCase(
@@ -32,4 +34,10 @@ abstract class UserCaseModule {
     abstract fun bindSearchMovieUseCase(
         searchMovieUseCaseImpl: SearchMovieUseCaseImpl
     ): SearchMovieUseCase
+
+    @Binds
+    @Singleton
+    abstract fun bindCastUseCase(
+        getMovieCastsUseCase: GetMovieCastsUseCaseImpl
+    ): GetMovieCastsUseCase
 }

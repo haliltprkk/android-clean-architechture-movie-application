@@ -8,7 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.haliltprkk.movieapplication.common.base.BaseFragment
+import com.haliltprkk.movieapplication.common.base.ViewBindingFragment
 import com.haliltprkk.movieapplication.common.extension.addSimpleVerticalDecoration
 import com.haliltprkk.movieapplication.common.extension.observeInLifecycle
 import com.haliltprkk.movieapplication.common.utils.UiText
@@ -17,7 +17,7 @@ import com.haliltprkk.movieapplication.domain.models.Movie
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
+class HomeFragment : ViewBindingFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var adapter: MovieAdapter

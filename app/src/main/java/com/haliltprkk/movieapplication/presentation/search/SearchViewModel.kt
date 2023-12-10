@@ -14,8 +14,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -38,7 +37,7 @@ class SearchViewModel @Inject constructor(private val searchMovieUseCase: Search
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
             delay(REQUEST_DELAY)
-            searchMovieUseCase.searchMovie(query).onEach {
+            searchMovieUseCase.searchMovie(query).collectLatest {
                 when (it) {
                     is Resource.Error -> {
                         setLoading(false)
@@ -58,7 +57,7 @@ class SearchViewModel @Inject constructor(private val searchMovieUseCase: Search
                         }
                     }
                 }
-            }.launchIn(this)
+            }
         }
     }
 

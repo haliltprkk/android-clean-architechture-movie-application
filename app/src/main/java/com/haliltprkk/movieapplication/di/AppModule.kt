@@ -13,6 +13,7 @@ import com.haliltprkk.movieapplication.data.local.MovieDatabase
 import com.haliltprkk.movieapplication.data.services.localStorage.KeyValueStore
 import com.haliltprkk.movieapplication.data.services.localStorage.SharedPreferencesKeyValueStore
 import com.haliltprkk.movieapplication.data.utils.GsonParser
+import com.haliltprkk.movieapplication.domain.mappers.MovieCreditsMapper
 import com.haliltprkk.movieapplication.domain.mappers.MovieMapper
 import dagger.Module
 import dagger.Provides
@@ -57,4 +58,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideMovieMapper(): MovieMapper = MovieMapper()
+
+    @Provides
+    @Singleton
+    fun provideMovieCreditsMapper(): MovieCreditsMapper = MovieCreditsMapper()
 }

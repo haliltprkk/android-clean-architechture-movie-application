@@ -5,46 +5,47 @@ import androidx.lifecycle.viewModelScope
 import com.haliltprkk.movieapplication.R
 import com.haliltprkk.movieapplication.common.utils.Resource
 import com.haliltprkk.movieapplication.common.utils.UiText
+import com.haliltprkk.movieapplication.domain.models.Cast
 import com.haliltprkk.movieapplication.domain.models.Movie
+import com.haliltprkk.movieapplication.domain.usecases.moviedetail.GetMovieCastsUseCase
 import com.haliltprkk.movieapplication.domain.usecases.moviedetail.GetMovieDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
-    private val getMovieDetailUseCase: GetMovieDetailUseCase
+    private val getMovieDetailUseCase: GetMovieDetailUseCase,
+    private val getMovieCastsUseCase: GetMovieCastsUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow<MovieDetailViewState>(MovieDetailViewState.Init)
     fun getViewState(): StateFlow<MovieDetailViewState> = _state.asStateFlow()
 
-    fun setLoading(isLoading: Boolean) {
-        _state.value = MovieDetailViewState.Loading(isLoading)
-    }
-
-    fun getMovie(id: Long) {
+    fun getMovieDetails(id: Long) {
         viewModelScope.launch {
-            getMovieDetailUseCase.getMovieById(id).onEach {
-                when (it) {
-                    is Resource.Error -> {
-                        setLoading(false)
-                        _state.value = MovieDetailViewState.Error(it.message)
-                    }
-                    is Resource.Loading -> setLoading(true)
-                    is Resource.Success -> {
-                        setLoading(false)
-                        if (it.data == null) {
-                            _state.value = MovieDetailViewState.Error(
-                                UiText.StringResource(R.string.movieDetailPage_emptyError)
+            getMovieDetailUseCase.getMovieById(id).combine(getMovieCastsUseCase.getCasts(id)) { movie, casts ->
+                if (movie is Resource.Loading || casts is Resource.Loading) {
+                    _state.value = MovieDetailViewState.Loading
+                } else if (movie is Resource.Error) {
+                    _state.value = MovieDetailViewState.Error(
+                        UiText.StringResource(R.string.movieDetailPage_emptyError)
+                    )
+                } else if (movie is Resource.Success) {
+                    if (movie.data == null) {
+                        _state.value = MovieDetailViewState.Error(
+                            UiText.StringResource(R.string.movieDetailPage_emptyError)
+                        )
+                    } else {
+                        _state.value =
+                            MovieDetailViewState.Success(
+                                movie = movie.data,
+                                castList = casts.data.orEmpty()
                             )
-                        } else {
-                            _state.value = MovieDetailViewState.Success(data = it.data)
-                        }
                     }
                 }
             }.launchIn(this)
@@ -53,8 +54,8 @@ class MovieDetailViewModel @Inject constructor(
 
     sealed class MovieDetailViewState {
         object Init : MovieDetailViewState()
-        data class Loading(val isLoading: Boolean) : MovieDetailViewState()
-        data class Success(val data: Movie) : MovieDetailViewState()
+        object Loading : MovieDetailViewState()
+        data class Success(val movie: Movie, val castList: List<Cast>) : MovieDetailViewState()
         data class Error(val error: UiText) : MovieDetailViewState()
     }
 }
